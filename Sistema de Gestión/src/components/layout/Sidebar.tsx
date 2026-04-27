@@ -1,16 +1,17 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { navItems } from '@/config/navigation'
+import { useDemoContext } from '@/context/DemoContext'
 import { SidebarItem } from './SidebarItem'
 
 export function Sidebar({ onNavClick }: { onNavClick?: () => void }) {
   const pathname = usePathname()
+  const { rubro } = useDemoContext()
 
   return (
     <aside className="w-64 flex-shrink-0 bg-[#0d1526] border-r border-white/[0.07] flex flex-col h-screen">
 
-      {/* Logo — estilo Automatizaciones BCH */}
+      {/* Logo */}
       <div className="h-16 flex items-center px-5 border-b border-white/[0.07]">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2">
@@ -32,12 +33,19 @@ export function Sidebar({ onNavClick }: { onNavClick?: () => void }) {
         </div>
       </div>
 
+      {/* Empresa activa */}
+      <div className="px-5 py-3 border-b border-white/[0.07] bg-white/[0.02]">
+        <p className="text-[9px] font-semibold text-white/25 uppercase tracking-widest mb-0.5">Empresa activa</p>
+        <p className="text-[12px] font-semibold text-white/90 truncate">{rubro.empresa}</p>
+        <p className="text-[10px] text-white/35 truncate">{rubro.rubro}</p>
+      </div>
+
       {/* Navigation */}
       <nav className="flex-1 py-4 px-3 space-y-0.5 overflow-y-auto">
         <p className="text-[10px] font-semibold text-white/25 uppercase tracking-widest px-3 mb-2">
           Módulos
         </p>
-        {navItems.map((item) => (
+        {rubro.navItems.map((item) => (
           <SidebarItem
             key={item.href}
             item={item}

@@ -1,129 +1,137 @@
-import { createClient } from '@/lib/supabase/server'
-import { PageShell }    from '@/components/layout/PageShell'
-import { MarketingView } from '@/components/marketing/MarketingView'
-import { calculateAttributionMetrics } from './attribution-actions'
-import type { Audience, Campaign, CampaignMessage, MarketingSpend } from '@/types'
-import type { SavedMarketingProposal, RevenueAnalysis } from '@/types/agent.types'
+'use client'
 
-export const dynamic   = 'force-dynamic'
-export const revalidate = 0
+import { useDemoContext } from '@/context/DemoContext'
+import { PageShell } from '@/components/layout/PageShell'
+import {
+  ResponsiveContainer, BarChart, Bar, XAxis, YAxis,
+  CartesianGrid, Tooltip, Legend,
+} from 'recharts'
+import * as serviciosData from '@/data/servicios'
+import * as distribuidoraData from '@/data/distribuidora'
+import * as pymeData from '@/data/pyme'
 
-const MARKETING_CHANNELS = ['Meta', 'TikTok', 'LinkedIn', 'Twitter/X', 'referido', 'otro']
+const TOOLTIP_STYLE = {
+  contentStyle: { background: '#1B2A4A', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 4 },
+  labelStyle: { color: '#8BA8C4', fontSize: 11 },
+  itemStyle: { color: '#C7CEDA', fontSize: 12 },
+}
 
-export default async function MarketingPage() {
-  const supabase = await createClient()
+function fmt(n: number) {
+  if (n >= 1_000_000) return `$${(n / 1_000_000).toFixed(1)}M`
+  if (n >= 1_000) return `$${(n / 1_000).toFixed(0)}K`
+  return `$${n}`
+}
 
-  const [
-    spendRes,
-    audienciasRes,
-    campanasRes,
-    mensajesRes,
-    leadsRes,
-    opsRes,
-    clientsRes,
-    attributionRes,
-    proposalsRes,
-    revenueRes,
-  ] = await Promise.all([
-    supabase.from('marketing_spend').select('*').order('date', { ascending: false }),
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (supabase as any).from('audiences').select('*').order('created_at', { ascending: false }),
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (supabase as any).from('campaigns').select('*').order('created_at', { ascending: false }),
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (supabase as any).from('campaign_messages').select('*').order('created_at', { ascending: false }),
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (supabase as any).from('leads').select('id, full_name, source_channel, converted_to_client_id, phone').limit(10000),
-    supabase.from('operations').select('client_id').limit(10000),
-    supabase.from('clients').select('id, full_name, phone, email').limit(5000),
-    calculateAttributionMetrics(),
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (supabase as any).from('marketing_proposals').select('*').eq('status', 'pending').order('created_at', { ascending: false }).limit(50),
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (supabase as any).from('revenue_analyses').select('id, analysis_data, created_at').order('created_at', { ascending: false }).limit(1).maybeSingle(),
-  ])
+export default function MarketingPage() {
+  const { rubro } = useDemoContext()
 
-  // ── Analytics: leads y conversiones por canal ─────────────────────────
-  const leadsPerChannel:       Record<string, number> = {}
-  const conversionsPerChannel: Record<string, number> = {}
-  const clientChannelMap:      Record<string, string> = {}
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  for (const lead of (leadsRes.data as any[]) ?? []) {
-    const ch = lead.source_channel
-    if (!ch || !MARKETING_CHANNELS.includes(ch)) continue
-    leadsPerChannel[ch] = (leadsPerChannel[ch] ?? 0) + 1
-    if (lead.converted_to_client_id) {
-      conversionsPerChannel[ch] = (conversionsPerChannel[ch] ?? 0) + 1
-      clientChannelMap[lead.converted_to_client_id] = ch
+  const { marketingData, channelKeys, colors } = (() => {
+    if (rubro.key === 'servicios') {
+      return {
+        marketingData: serviciosData.marketingData,
+        channelKeys: ['linkedin', 'google', 'meta', 'eventos'],
+        colors: ['#4A9DC8', '#6BB7E6', '#8BA8C4', '#4E6A9A'],
+      }
     }
-  }
+    if (rubro.key === 'distribuidora') {
+      return {
+        marketingData: distribuidoraData.marketingData,
+        channelKeys: ['linkedin', 'google', 'meta', 'ferias'],
+        colors: ['#4A9DC8', '#6BB7E6', '#8BA8C4', '#2A5298'],
+      }
+    }
+    return {
+      marketingData: pymeData.marketingData,
+      channelKeys: ['instagram', 'google', 'tiktok', 'meta'],
+      colors: ['#EC4899', '#6BB7E6', '#8B5CF6', '#4A9DC8'],
+    }
+  })()
 
-  // ── Analytics: operaciones atribuidas por canal ───────────────────────
-  const opsPerChannel: Record<string, number> = {}
-  for (const op of opsRes.data ?? []) {
-    const ch = clientChannelMap[op.client_id]
-    if (ch) opsPerChannel[ch] = (opsPerChannel[ch] ?? 0) + 1
-  }
+  const md = marketingData as unknown as Record<string, number>[]
+  const totalGasto = md.reduce((s, m) =>
+    s + channelKeys.reduce((cs, k) => cs + (m[k] ?? 0), 0), 0
+  )
+  const ultimoMes = md[md.length - 1]
+  const gastoUltimoMes = channelKeys.reduce((s, k) => s + (ultimoMes[k] ?? 0), 0)
 
-  // ── Analytics: gasto por canal ────────────────────────────────────────
-  const spendPerChannel: Record<string, number> = {}
-  for (const s of spendRes.data ?? []) {
-    spendPerChannel[s.channel] = (spendPerChannel[s.channel] ?? 0) + s.amount_clp
-  }
+  const channelTotals = channelKeys.map(k => ({
+    canal: k.charAt(0).toUpperCase() + k.slice(1),
+    total: md.reduce((s, m) => s + (m[k] ?? 0), 0),
+  })).sort((a, b) => b.total - a.total)
 
-  // ── Maps para resolución de nombres en Mensajes ───────────────────────
-  const leadsMap: Record<string, { full_name: string; phone: string | null }> = {}
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  for (const l of (leadsRes.data as any[]) ?? []) {
-    leadsMap[l.id] = { full_name: l.full_name, phone: l.phone ?? null }
-  }
-
-  const clientsMap: Record<string, { full_name: string; phone: string | null; email: string | null }> = {}
-  for (const c of clientsRes.data ?? []) {
-    clientsMap[c.id] = { full_name: c.full_name, phone: c.phone ?? null, email: c.email ?? null }
-  }
-
-  // ── Map de audiencias para Campañas ───────────────────────────────────
-  const audienciasMap: Record<string, string> = {}
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  for (const a of (audienciasRes.data as any[]) ?? []) {
-    audienciasMap[a.id] = a.name
-  }
-
-  // ── Conteo de mensajes por campaña ────────────────────────────────────
-  const messageCounts: Record<string, number> = {}
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  for (const m of (mensajesRes.data as any[]) ?? []) {
-    messageCounts[m.campaign_id] = (messageCounts[m.campaign_id] ?? 0) + 1
+  const CHANNEL_LABELS: Record<string, string> = {
+    linkedin: 'LinkedIn', google: 'Google Ads', meta: 'Meta Ads',
+    eventos: 'Eventos', ferias: 'Ferias', instagram: 'Instagram',
+    tiktok: 'TikTok',
   }
 
   return (
-    <PageShell title="Marketing" description="Audiencias, campañas, mensajes y analítica">
-      <MarketingView
-        initialSpends={          (spendRes.data      ?? []) as MarketingSpend[]}
-        initialAudiencias={      (audienciasRes.data  ?? []) as Audience[]}
-        initialCampanas={        (campanasRes.data    ?? []) as Campaign[]}
-        initialMensajes={        (mensajesRes.data    ?? []) as CampaignMessage[]}
-        initialProposals={       (proposalsRes.data   ?? []) as SavedMarketingProposal[]}
-        initialRevenueAnalysis={ revenueRes.data?.analysis_data as RevenueAnalysis ?? null }
-        lastRevenueAnalyzedAt={  revenueRes.data?.created_at ?? null }
-        audienciasMap={audienciasMap}
-        messageCounts={messageCounts}
-        leadsMap={leadsMap}
-        clientsMap={clientsMap}
-        analyticsData={{
-          leadsPerChannel,
-          conversionsPerChannel,
-          opsPerChannel,
-          spendPerChannel,
-        }}
-        attributionMetrics={
-          attributionRes.success
-            ? attributionRes.data
-            : { byChannel: [], byCampaign: [], totals: { total_clients: 0, total_operations: 0, total_profit_clp: 0, avg_conversion_days: 0 } }
-        }
-      />
+    <PageShell title="Marketing" description={`Inversión y canales — ${rubro.empresa}`}>
+
+      {/* Stats */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {[
+          { label: 'Gasto total (12M)', value: fmt(totalGasto) },
+          { label: 'Gasto último mes', value: fmt(gastoUltimoMes) },
+          { label: 'Canales activos', value: String(channelKeys.length) },
+          { label: 'Canal líder', value: channelTotals[0]?.canal ?? '—' },
+        ].map(s => (
+          <div key={s.label} className="bg-slate-900 border border-slate-800 rounded-xl p-4">
+            <p className="text-xs text-slate-400 uppercase tracking-wider mb-2">{s.label}</p>
+            <p className="text-xl font-bold font-mono text-slate-100">{s.value}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Bar chart */}
+      <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden">
+        <div className="px-5 py-4 border-b border-slate-800">
+          <p className="text-sm font-semibold text-slate-100">Inversión por canal — últimos 12 meses</p>
+        </div>
+        <div className="p-4 h-72">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={md} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
+              <XAxis dataKey="mes" tick={{ fill: '#8BA8C4', fontSize: 10 }} axisLine={false} tickLine={false} />
+              <YAxis
+                tickFormatter={v => `$${(v / 1000).toFixed(0)}K`}
+                tick={{ fill: '#8BA8C4', fontSize: 10 }} axisLine={false} tickLine={false} width={52}
+              />
+              <Tooltip
+                formatter={(v) => [`$${((v as number) / 1000).toFixed(0)}K`]}
+                {...TOOLTIP_STYLE}
+              />
+              <Legend iconType="circle" iconSize={8} wrapperStyle={{ fontSize: 11, color: '#8BA8C4' }} />
+              {channelKeys.map((k, i) => (
+                <Bar key={k} dataKey={k} name={CHANNEL_LABELS[k] ?? k} fill={colors[i]} radius={[2, 2, 0, 0]} stackId="a" />
+              ))}
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Channel breakdown */}
+      <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
+        <p className="text-sm font-semibold text-slate-100 mb-4">Distribución por canal (12 meses)</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {channelTotals.map((c, i) => {
+            const pct = totalGasto > 0 ? (c.total / totalGasto) * 100 : 0
+            return (
+              <div key={c.canal}>
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-xs font-medium text-slate-300">{CHANNEL_LABELS[c.canal.toLowerCase()] ?? c.canal}</span>
+                  <span className="text-xs font-mono text-slate-400">{pct.toFixed(1)}%</span>
+                </div>
+                <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden mb-1">
+                  <div className="h-full rounded-full" style={{ width: `${pct}%`, background: colors[i] }} />
+                </div>
+                <p className="text-xs font-mono text-slate-500">{fmt(c.total)}</p>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
     </PageShell>
   )
 }
