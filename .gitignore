@@ -1,0 +1,12 @@
+node_modules/
+.next/
+.env*
+.firecrawl/
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+
+# Datos sensibles del cliente
+*.xlsx
+*.docx
+Sistema\ de\ Gestión/public/cotizacion/

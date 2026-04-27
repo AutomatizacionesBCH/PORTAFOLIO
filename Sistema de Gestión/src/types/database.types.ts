@@ -1,0 +1,274 @@
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[]
+
+export interface Database {
+  public: {
+    Tables: {
+      operations: {
+        Row: {
+          id: string
+          client_id: string
+          company_id: string | null
+          processor_id: string | null
+          operation_date: string
+          amount_usd: number
+          client_payout_pct: number
+          fx_rate_used: number
+          fx_source: string | null
+          amount_clp_paid: number | null
+          processor_fee_pct: number
+          loan_fee_pct: number
+          payout_fee_pct: number
+          wire_fee_usd: number
+          receive_fee_usd: number
+          gross_clp: number | null
+          profit_clp: number | null
+          status: 'pendiente' | 'en_proceso' | 'completada' | 'anulada'
+          notes: string | null
+          contract_url: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          client_id: string
+          company_id?: string | null
+          processor_id?: string | null
+          operation_date?: string
+          amount_usd: number
+          client_payout_pct: number
+          fx_rate_used: number
+          fx_source?: string | null
+          amount_clp_paid?: number | null
+          processor_fee_pct?: number
+          loan_fee_pct?: number
+          payout_fee_pct?: number
+          wire_fee_usd?: number
+          receive_fee_usd?: number
+          gross_clp?: number | null
+          profit_clp?: number | null
+          status?: 'pendiente' | 'en_proceso' | 'completada' | 'anulada'
+          notes?: string | null
+          contract_url?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          client_id?: string
+          company_id?: string | null
+          processor_id?: string | null
+          operation_date?: string
+          amount_usd?: number
+          client_payout_pct?: number
+          fx_rate_used?: number
+          fx_source?: string | null
+          amount_clp_paid?: number | null
+          processor_fee_pct?: number
+          loan_fee_pct?: number
+          payout_fee_pct?: number
+          wire_fee_usd?: number
+          receive_fee_usd?: number
+          gross_clp?: number | null
+          profit_clp?: number | null
+          status?: 'pendiente' | 'en_proceso' | 'completada' | 'anulada'
+          notes?: string | null
+          contract_url?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      clients: {
+        Row: {
+          id: string
+          full_name: string
+          document_id: string | null
+          email: string | null
+          phone: string | null
+          assigned_company_id: string | null
+          assigned_processor_id: string | null
+          tags: string[]
+          notes: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          full_name: string
+          document_id?: string | null
+          email?: string | null
+          phone?: string | null
+          assigned_company_id?: string | null
+          assigned_processor_id?: string | null
+          tags?: string[]
+          notes?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          full_name?: string
+          document_id?: string | null
+          email?: string | null
+          phone?: string | null
+          assigned_company_id?: string | null
+          assigned_processor_id?: string | null
+          tags?: string[]
+          notes?: string | null
+        }
+        Relationships: []
+      }
+      companies: {
+        Row: {
+          id: string
+          name: string
+          legal_name: string | null
+          status: 'activo' | 'pausado' | 'en_riesgo' | null
+          notes: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          legal_name?: string | null
+          status?: 'activo' | 'pausado' | 'en_riesgo' | null
+          notes?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          legal_name?: string | null
+          status?: 'activo' | 'pausado' | 'en_riesgo' | null
+          notes?: string | null
+        }
+        Relationships: []
+      }
+      processors: {
+        Row: {
+          id: string
+          name: string
+          company_id: string | null
+          type: string | null
+          status: 'activo' | 'pausado' | 'en_riesgo'
+          daily_limit_usd: number | null
+          notes: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          company_id?: string | null
+          type?: string | null
+          status?: 'activo' | 'pausado' | 'en_riesgo'
+          daily_limit_usd?: number | null
+          notes?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          company_id?: string | null
+          type?: string | null
+          status?: 'activo' | 'pausado' | 'en_riesgo'
+          daily_limit_usd?: number | null
+          notes?: string | null
+        }
+        Relationships: []
+      }
+      cash_positions: {
+        Row: {
+          id: string
+          date: string
+          available_clp: number
+          notes: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          date: string
+          available_clp: number
+          notes?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          date?: string
+          available_clp?: number
+          notes?: string | null
+        }
+        Relationships: []
+      }
+      marketing_spend: {
+        Row: {
+          id: string
+          date: string
+          channel: 'Meta' | 'TikTok' | 'LinkedIn' | 'Twitter/X' | 'referido' | 'otro'
+          amount_clp: number
+          notes: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          date: string
+          channel: 'Meta' | 'TikTok' | 'LinkedIn' | 'Twitter/X' | 'referido' | 'otro'
+          amount_clp: number
+          notes?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          date?: string
+          channel?: 'Meta' | 'TikTok' | 'LinkedIn' | 'Twitter/X' | 'referido' | 'otro'
+          amount_clp?: number
+          notes?: string | null
+        }
+        Relationships: []
+      }
+      leads: {
+        Row: {
+          id: string
+          full_name: string
+          phone: string | null
+          source_channel: string | null
+          campaign_name: string | null
+          status: 'nuevo' | 'contactado' | 'en_seguimiento' | 'convertido' | 'perdido'
+          converted_to_client: boolean
+          client_id: string | null
+          notes: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          full_name: string
+          phone?: string | null
+          source_channel?: string | null
+          campaign_name?: string | null
+          status?: 'nuevo' | 'contactado' | 'en_seguimiento' | 'convertido' | 'perdido'
+          converted_to_client?: boolean
+          client_id?: string | null
+          notes?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          full_name?: string
+          phone?: string | null
+          source_channel?: string | null
+          campaign_name?: string | null
+          status?: 'nuevo' | 'contactado' | 'en_seguimiento' | 'convertido' | 'perdido'
+          converted_to_client?: boolean
+          client_id?: string | null
+          notes?: string | null
+        }
+        Relationships: []
+      }
+    }
+    Views: Record<string, never>
+    Functions: Record<string, never>
+    Enums: Record<string, never>
+  }
+}
