@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patitas Felices — Tienda de Mascotas Chile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@300;400;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFBF5;
+    --blue: #2563EB;
+    --blue-light: #3B82F6;
+    --blue-pale: #EFF6FF;
+    --orange: #F97316;
+    --orange-pale: #FFF7ED;
+    --green: #16A34A;
+    --green-pale: #F0FDF4;
+    --pink: #EC4899;
+    --yellow: #FCD34D;
+    --text: #1E293B;
+    --text-soft: #64748B;
+    --line: #E2E8F0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Nunito Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: var(--blue);
+    padding: 0.55rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+  }
+
+  .topbar__item {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 2px solid var(--line);
+  }
+
+  .header__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .logo__icon {
+    width: 44px;
+    height: 44px;
+    background: var(--blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+
+  .logo__text {}
+
+  .logo__name {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: var(--text);
+    line-height: 1;
+    display: block;
+  }
+
+  .logo__sub {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+  }
+
+  nav { display: flex; gap: 0.5rem; }
+
+  nav a {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-soft);
+    text-decoration: none;
+    padding: 0.5rem 0.9rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+
+  nav a:hover { background: var(--blue-pale); color: var(--blue); }
+
+  .header__right { display: flex; align-items: center; gap: 1rem; }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--line);
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+  }
+
+  .search-box input {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text);
+    width: 140px;
+  }
+
+  .search-box input::placeholder { color: var(--text-soft); }
+
+  .cart-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--blue);
+    color: white;
+    padding: 0.6rem 1.4rem;
+    border-radius: 99px;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+
+  .cart-link:hover { background: var(--blue-light); }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--blue-pale) 0%, #FFF7ED 100%);
+    padding: 5rem 0 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
+    top: -200px; right: -100px;
+    border-radius: 50%;
+  }
+
+  .hero__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero__left {}
+
+  .hero__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    border: 2px solid var(--yellow);
+    border-radius: 99px;
+    padding: 0.4rem 1rem;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__title {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+  }
+
+  .hero__title span { color: var(--blue); }
+  .hero__title em { font-style: italic; color: var(--orange); }
+
+  .hero__desc {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-soft);
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero__btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+
+  .btn-primary {
+    background: var(--blue);
+    color: white;
+    padding: 0.9rem 2rem;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--blue-light); transform: translateY(-2px); }
+
+  .btn-secondary {
+    background: white;
+    color: var(--text);
+    border: 2px solid var(--line);
+    padding: 0.9rem 2rem;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+
+  .hero__trust {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-soft);
+  }
+
+  .trust-item span { font-size: 1rem; }
+
+  .hero__right {}
+
+  .hero__banner {
+    background: var(--blue);
+    border-radius: 20px;
+    padding: 2rem;
+    color: white;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero__banner::after {
+    content: '🐾';
+    position: absolute;
+    right: -0.5rem;
+    bottom: -0.5rem;
+    font-size: 6rem;
+    opacity: 0.1;
+  }
+
+  .hero__banner-tag {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .hero__banner-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero__banner-sub {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__banner-btn {
+    background: var(--yellow);
+    color: var(--text);
+    padding: 0.6rem 1.5rem;
+    border-radius: 99px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+  }
+
+  .hero__banner-btn:hover { background: #fbbf24; }
+
+  .quick-products {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .qp-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+
+  .qp-card:hover { border-color: var(--blue); transform: translateY(-2px); }
+
+  .qp-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .qp-name {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+    margin-bottom: 2px;
+    line-height: 1.2;
+  }
+
+  .qp-price {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--blue);
+  }
+
+  /* ── CATEGORIES ── */
+  .categories {
+    padding: 6rem 0;
+  }
+
+  .categories .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .sec-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .sec-pill {
+    display: inline-block;
+    background: var(--blue-pale);
+    color: var(--blue);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: 99px;
+    margin-bottom: 1rem;
+  }
+
+  .sec-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    font-weight: 900;
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  .sec-title span { color: var(--blue); }
+
+  .cat-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cat-card {
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border: 2px solid transparent;
+  }
+
+  .cat-card:hover { transform: translateY(-6px); border-color: currentColor; }
+
+  .cat-card--dog { background: var(--blue-pale); color: var(--blue); }
+  .cat-card--cat { background: #FDF4FF; color: #9333EA; }
+  .cat-card--bird { background: var(--orange-pale); color: var(--orange); }
+  .cat-card--fish { background: #ECFDF5; color: var(--green); }
+
+  .cat-emoji { font-size: 3.5rem; margin-bottom: 1rem; display: block; }
+
+  .cat-name {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+    color: var(--text);
+  }
+
+  .cat-count {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    color: var(--text-soft);
+  }
+
+  /* ── PRODUCTS ── */
+  .products {
+    padding: 6rem 0;
+    background: white;
+  }
+
+  .products .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .prod-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+  }
+
+  .prod-header h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+    font-weight: 900;
+  }
+
+  .prod-header h2 span { color: var(--blue); }
+
+  .tabs { display: flex; gap: 0.5rem; }
+
+  .tab-btn {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.5rem 1.2rem;
+    border-radius: 99px;
+    border: 2px solid var(--line);
+    background: transparent;
+    color: var(--text-soft);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .tab-btn.active, .tab-btn:hover {
+    background: var(--blue);
+    color: white;
+    border-color: var(--blue);
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .p-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid var(--line);
+    background: white;
+    transition: box-shadow 0.25s, transform 0.2s;
+    cursor: pointer;
+  }
+
+  .p-card:hover { box-shadow: 0 12px 40px rgba(37,99,235,0.12); transform: translateY(-4px); }
+
+  .p-card__img-wrap {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    position: relative;
+  }
+
+  .p-card__img-wrap--blue { background: var(--blue-pale); }
+  .p-card__img-wrap--orange { background: var(--orange-pale); }
+  .p-card__img-wrap--green { background: var(--green-pale); }
+  .p-card__img-wrap--pink { background: #FDF4FF; }
+
+  .p-badge {
+    position: absolute;
+    top: 0.75rem; left: 0.75rem;
+    background: var(--blue);
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 800;
+    padding: 0.2rem 0.6rem;
+    border-radius: 99px;
+    letter-spacing: 0.05em;
+  }
+
+  .p-badge--orange { background: var(--orange); }
+  .p-badge--green { background: var(--green); }
+
+  .p-card__body { padding: 1.25rem; }
+
+  .p-cat {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 0.3rem;
+    display: block;
+  }
+
+  .p-name {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    line-height: 1.3;
+    color: var(--text);
+  }
+
+  .p-desc {
+    font-size: 0.78rem;
+    color: var(--text-soft);
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .p-stars {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.72rem;
+    color: var(--orange);
+  }
+
+  .p-stars .reviews { color: var(--text-soft); margin-left: 4px; }
+
+  .p-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .p-price {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .p-price small {
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--text-soft);
+    text-decoration: line-through;
+    margin-left: 4px;
+  }
+
+  .add-btn {
+    background: var(--blue);
+    color: white;
+    border: none;
+    padding: 0.55rem 1.1rem;
+    border-radius: 8px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .add-btn:hover { background: var(--blue-light); }
+
+  /* ── PERKS ── */
+  .perks {
+    background: var(--blue);
+    padding: 4rem 0;
+  }
+
+  .perks .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .perk {
+    text-align: center;
+    color: white;
+  }
+
+  .perk__icon { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; }
+
+  .perk__name {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+  }
+
+  .perk__desc {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 6rem 0;
+    background: var(--bg);
+  }
+
+  .contact .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact__left h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    font-weight: 900;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  .contact__left h2 span { color: var(--blue); }
+
+  .contact__left p {
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: var(--text-soft);
+    margin-bottom: 2rem;
+  }
+
+  .ci {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+    border: 2px solid var(--line);
+  }
+
+  .ci__icon {
+    width: 44px; height: 44px;
+    background: var(--blue-pale);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .ci__label {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .ci__val {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .contact__form {
+    background: white;
+    border-radius: 20px;
+    border: 2px solid var(--line);
+    padding: 2.5rem;
+  }
+
+  .contact__form h3 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 0.25rem;
+  }
+
+  .contact__form h3 span { color: var(--blue); }
+
+  .contact__form p {
+    font-size: 0.82rem;
+    color: var(--text-soft);
+    margin-bottom: 2rem;
+  }
+
+  .fg { margin-bottom: 1rem; }
+
+  .fg label {
+    display: block;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+
+  .fg input, .fg select, .fg textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .fg select option { background: white; }
+  .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--blue); background: white; }
+  .fg textarea { min-height: 90px; resize: vertical; }
+
+  .fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .btn-enviar {
+    width: 100%;
+    background: var(--blue);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-enviar:hover { background: var(--blue-light); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text);
+    color: white;
+    padding: 2.5rem 0;
+  }
+
+  .footer__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer__brand {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .footer__brand::before { content: '🐾'; }
+
+  .footer__brand span {
+    display: block;
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: var(--blue-light);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .footer__copy {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ── ANIMS ── */
+  @keyframes bounce-in {
+    0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+    60% { opacity: 1; transform: scale(1.05) translateY(-4px); }
+    100% { transform: scale(1) translateY(0); }
+  }
+
+  .hero__pill { animation: bounce-in 0.6s ease both 0.1s; }
+  .hero__title { animation: bounce-in 0.6s ease both 0.25s; }
+  .hero__desc { animation: bounce-in 0.5s ease both 0.4s; }
+  .hero__btns { animation: bounce-in 0.5s ease both 0.55s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+    .cat-cards { grid-template-columns: repeat(2, 1fr); }
+    .perks .container { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    .hero__inner { grid-template-columns: 1fr; }
+    .topbar { flex-direction: column; gap: 0.25rem; }
+    nav { display: none; }
+    .search-box { display: none; }
+    .contact .container { grid-template-columns: 1fr; gap: 3rem; }
+    .footer__inner { flex-direction: column; gap: 1rem; text-align: center; }
+    .prod-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  }
+
+  @media (max-width: 600px) {
+    .product-grid { grid-template-columns: 1fr 1fr; }
+    .cat-cards { grid-template-columns: 1fr 1fr; }
+    .perks .container { grid-template-columns: 1fr 1fr; }
+    .quick-products { grid-template-columns: 1fr; }
+    .fg-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span class="topbar__item">🚚 Envío gratis sobre $25.000</span>
+  <span class="topbar__item">⭐ +4.000 clientes felices</span>
+  <span class="topbar__item">📦 Despacho en 24-48h a todo Chile</span>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header__inner">
+    <div class="logo">
+      <div class="logo__icon">🐾</div>
+      <div class="logo__text">
+        <span class="logo__name">Patitas Felices</span>
+        <span class="logo__sub">Tienda de mascotas · Chile</span>
+      </div>
+    </div>
+    <nav>
+      <a href="#categorias">Categorías</a>
+      <a href="#productos">Productos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="header__right">
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="text" placeholder="Buscar productos...">
+      </div>
+      <a href="#contacto" class="cart-link">🛒 Carrito (0)</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__inner">
+    <div class="hero__left">
+      <div class="hero__pill">🎉 ¡Sale de verano! Hasta 30% OFF</div>
+      <h1 class="hero__title">
+        Todo lo que<br>
+        <span>tu mascota</span><br>
+        necesita <em>y más.</em>
+      </h1>
+      <p class="hero__desc">
+        Alimentos premium, accesorios, juguetes y cuidado para perros, gatos, aves y más. Envío rápido a todo Chile.
+      </p>
+      <div class="hero__btns">
+        <a href="#productos" class="btn-primary">🛍️ Ver productos</a>
+        <a href="#contacto" class="btn-secondary">Hablar con nosotros</a>
+      </div>
+      <div class="hero__trust">
+        <div class="trust-item"><span>⭐</span> 4.9/5 en valoraciones</div>
+        <div class="trust-item"><span>🛡️</span> Compra segura</div>
+        <div class="trust-item"><span>🔄</span> Devolución fácil</div>
+      </div>
+    </div>
+    <div class="hero__right">
+      <div class="hero__banner">
+        <span class="hero__banner-tag">🔥 Oferta de la semana</span>
+        <div class="hero__banner-title">30% OFF en<br>Alimentos Premium</div>
+        <div class="hero__banner-sub">Solo hasta el domingo · Stock limitado</div>
+        <a href="#productos" class="hero__banner-btn">Ver ofertas →</a>
+      </div>
+      <div class="quick-products">
+        <div class="qp-card">
+          <div class="qp-icon" style="background:var(--blue-pale)">🦴</div>
+          <div>
+            <div class="qp-name">Snacks para perro</div>
+            <div class="qp-price">$8.990</div>
+          </div>
+        </div>
+        <div class="qp-card">
+          <div class="qp-icon" style="background:#FDF4FF">🧶</div>
+          <div>
+            <div class="qp-name">Juguete gato</div>
+            <div class="qp-price">$6.490</div>
+          </div>
+        </div>
+        <div class="qp-card">
+          <div class="qp-icon" style="background:var(--orange-pale)">🐶</div>
+          <div>
+            <div class="qp-name">Collar ajustable</div>
+            <div class="qp-price">$12.990</div>
+          </div>
+        </div>
+        <div class="qp-card">
+          <div class="qp-icon" style="background:var(--green-pale)">🐠</div>
+          <div>
+            <div class="qp-name">Alimento peces</div>
+            <div class="qp-price">$4.990</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories" id="categorias">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-pill">Mascotas</div>
+      <h2 class="sec-title">¿Qué tipo de<br><span>amigo</span> tienes?</h2>
+    </div>
+    <div class="cat-cards">
+      <div class="cat-card cat-card--dog">
+        <span class="cat-emoji">🐶</span>
+        <div class="cat-name">Perros</div>
+        <div class="cat-count">+120 productos</div>
+      </div>
+      <div class="cat-card cat-card--cat">
+        <span class="cat-emoji">🐱</span>
+        <div class="cat-name">Gatos</div>
+        <div class="cat-count">+85 productos</div>
+      </div>
+      <div class="cat-card cat-card--bird">
+        <span class="cat-emoji">🐦</span>
+        <div class="cat-name">Aves</div>
+        <div class="cat-count">+40 productos</div>
+      </div>
+      <div class="cat-card cat-card--fish">
+        <span class="cat-emoji">🐠</span>
+        <div class="cat-name">Peces</div>
+        <div class="cat-count">+35 productos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="productos">
+  <div class="container">
+    <div class="prod-header">
+      <h2>Más <span>vendidos</span> esta semana</h2>
+      <div class="tabs">
+        <button class="tab-btn active">Todos</button>
+        <button class="tab-btn">Perros</button>
+        <button class="tab-btn">Gatos</button>
+        <button class="tab-btn">Aves</button>
+      </div>
+    </div>
+    <div class="product-grid">
+      <div class="p-card">
+        <div class="p-card__img-wrap p-card__img-wrap--blue">
+          <span style="font-size:5rem">🦴</span>
+          <span class="p-badge">-25%</span>
+        </div>
+        <div class="p-card__body">
+          <span class="p-cat">🐶 Perros</span>
+          <div class="p-name">Royal Canin Medium Adult 15kg</div>
+          <div class="p-desc">Nutrición completa para razas medianas.</div>
+          <div class="p-stars">★★★★★ <span class="reviews">(328)</span></div>
+          <div class="p-price-row">
+            <div class="p-price">$38.990 <small>$51.990</small></div>
+            <button class="add-btn">+ Agregar</button>
+          </div>
+        </div>
+      </div>
+      <div class="p-card">
+        <div class="p-card__img-wrap p-card__img-wrap--pink">
+          <span style="font-size:5rem">🧶</span>
+          <span class="p-badge p-badge--orange">NUEVO</span>
+        </div>
+        <div class="p-card__body">
+          <span class="p-cat" style="color:#9333EA">🐱 Gatos</span>
+          <div class="p-name">Rascador Torre Deluxe con Hamaca</div>
+          <div class="p-desc">Madera y cuerda sisal 100% natural. 160cm alto.</div>
+          <div class="p-stars" style="color:#9333EA">★★★★★ <span class="reviews">(143)</span></div>
+          <div class="p-price-row">
+            <div class="p-price">$29.990</div>
+            <button class="add-btn" style="background:#9333EA">+ Agregar</button>
+          </div>
+        </div>
+      </div>
+      <div class="p-card">
+        <div class="p-card__img-wrap p-card__img-wrap--orange">
+          <span style="font-size:5rem">🐶</span>
+          <span class="p-badge p-badge--green">OFERTA</span>
+        </div>
+        <div class="p-card__body">
+          <span class="p-cat">🐶 Perros</span>
+          <div class="p-name">Kit Baño Completo para Mascotas</div>
+          <div class="p-desc">Champú, acondicionador y perfume hipoalergénico.</div>
+          <div class="p-stars">★★★★☆ <span class="reviews">(89)</span></div>
+          <div class="p-price-row">
+            <div class="p-price">$15.990 <small>$21.990</small></div>
+            <button class="add-btn">+ Agregar</button>
+          </div>
+        </div>
+      </div>
+      <div class="p-card">
+        <div class="p-card__img-wrap p-card__img-wrap--green">
+          <span style="font-size:5rem">🐠</span>
+        </div>
+        <div class="p-card__body">
+          <span class="p-cat" style="color:var(--green)">🐠 Peces</span>
+          <div class="p-name">Acuario Panorámico 60L Completo</div>
+          <div class="p-desc">Con filtro, LED, termómetro y piedras decorativas.</div>
+          <div class="p-stars" style="color:var(--green)">★★★★★ <span class="reviews">(52)</span></div>
+          <div class="p-price-row">
+            <div class="p-price">$42.990</div>
+            <button class="add-btn" style="background:var(--green)">+ Agregar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERKS -->
+<div class="perks">
+  <div class="container">
+    <div class="perk">
+      <span class="perk__icon">🚚</span>
+      <div class="perk__name">Envío gratis</div>
+      <div class="perk__desc">En compras sobre $25.000 a todo Chile</div>
+    </div>
+    <div class="perk">
+      <span class="perk__icon">✅</span>
+      <div class="perk__name">Productos originales</div>
+      <div class="perk__desc">Solo marcas certificadas y de confianza</div>
+    </div>
+    <div class="perk">
+      <span class="perk__icon">🔄</span>
+      <div class="perk__name">Devolución fácil</div>
+      <div class="perk__desc">30 días para cambios o devoluciones</div>
+    </div>
+    <div class="perk">
+      <span class="perk__icon">💬</span>
+      <div class="perk__name">Asesoría gratis</div>
+      <div class="perk__desc">Médico veterinario disponible via WhatsApp</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="container">
+    <div class="contact__left">
+      <h2>¿Tienes <span>dudas</span>?<br>Estamos aquí 🐾</h2>
+      <p>Nuestro equipo — incluyendo una veterinaria — te ayuda a elegir el producto correcto para tu mascota.</p>
+      <div class="ci">
+        <div class="ci__icon">📞</div>
+        <div>
+          <span class="ci__label">WhatsApp</span>
+          <span class="ci__val">+56 9 2345 6789</span>
+        </div>
+      </div>
+      <div class="ci">
+        <div class="ci__icon">✉️</div>
+        <div>
+          <span class="ci__label">Email</span>
+          <span class="ci__val">hola@patitasfelices.cl</span>
+        </div>
+      </div>
+      <div class="ci">
+        <div class="ci__icon">📍</div>
+        <div>
+          <span class="ci__label">Tienda física</span>
+          <span class="ci__val">Av. Irarrázaval 2800, Ñuñoa · Santiago</span>
+        </div>
+      </div>
+      <div class="ci">
+        <div class="ci__icon">🕐</div>
+        <div>
+          <span class="ci__label">Horario</span>
+          <span class="ci__val">Lun–Sáb 10:00–20:00 · Dom 11:00–18:00</span>
+        </div>
+      </div>
+    </div>
+    <div class="contact__form">
+      <h3>Envíanos un <span>mensaje</span></h3>
+      <p>Te respondemos en menos de 1 hora en horario de atención.</p>
+      <form onsubmit="handleSubmit(event)">
+        <div class="fg-row">
+          <div class="fg">
+            <label>Tu nombre</label>
+            <input type="text" placeholder="Javiera López" required>
+          </div>
+          <div class="fg">
+            <label>Email</label>
+            <input type="email" placeholder="javiera@correo.cl" required>
+          </div>
+        </div>
+        <div class="fg">
+          <label>Teléfono (WhatsApp)</label>
+          <input type="tel" placeholder="+56 9 XXXX XXXX">
+        </div>
+        <div class="fg">
+          <label>¿Qué tipo de mascota tienes?</label>
+          <select>
+            <option>Perro</option>
+            <option>Gato</option>
+            <option>Ave</option>
+            <option>Pez</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>¿En qué podemos ayudarte?</label>
+          <textarea placeholder="Cuéntanos qué necesitas para tu mascota..."></textarea>
+        </div>
+        <button type="submit" class="btn-enviar">🐾 Enviar mensaje</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer__inner">
+    <div class="footer__brand">
+      Patitas Felices
+      <span>Tienda de mascotas · Chile</span>
+    </div>
+    <p class="footer__copy">© 2025 Patitas Felices SpA · hola@patitasfelices.cl</p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+document.querySelectorAll('.add-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const orig = btn.textContent;
+    btn.textContent = '✓ Agregado!';
+    setTimeout(() => { btn.textContent = orig; }, 1500);
+  });
+});
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-enviar');
+  btn.textContent = '¡Mensaje enviado! Te respondemos pronto 🐾';
+  btn.style.background = 'var(--green)';
+  setTimeout(() => {
+    btn.textContent = '🐾 Enviar mensaje';
+    btn.style.background = '';
+    e.target.reset();
+  }, 3000);
+}
+</script>
+</body>
+</html>

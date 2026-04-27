@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APEX Nutrition — Suplementos Fitness Chile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0A0A;
+    --bg2: #141414;
+    --bg3: #1E1E1E;
+    --yellow: #FFE600;
+    --yellow2: #FFF04D;
+    --white: #F0F0F0;
+    --gray: #666;
+    --line: rgba(255,230,0,0.12);
+    --line2: rgba(255,255,255,0.07);
+    --green: #00C853;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.98);
+    border-bottom: 1px solid var(--line2);
+  }
+
+  .header__top {
+    background: var(--yellow);
+    padding: 0.4rem 2rem;
+    text-align: center;
+  }
+
+  .header__top p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--bg);
+    font-weight: 400;
+  }
+
+  .header__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .logo {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
+    color: var(--yellow);
+    line-height: 1;
+  }
+
+  .logo span {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.45rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gray);
+    font-weight: 300;
+  }
+
+  nav { display: flex; gap: 2rem; }
+
+  nav a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--gray);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--yellow); }
+
+  .header__actions { display: flex; align-items: center; gap: 1rem; }
+
+  .cart-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--bg);
+    background: var(--yellow);
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.2s;
+  }
+
+  .cart-btn:hover { background: var(--yellow2); }
+
+  /* ── HERO ── */
+  .hero {
+    padding-top: 88px;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .hero__bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,230,0,0.03) 60px, rgba(255,230,0,0.03) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,230,0,0.03) 60px, rgba(255,230,0,0.03) 61px);
+    pointer-events: none;
+  }
+
+  .hero__content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .hero__left {}
+
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,230,0,0.1);
+    border: 1px solid var(--yellow);
+    color: var(--yellow);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero__badge::before { content: '★'; }
+
+  .hero__title {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(4rem, 9vw, 10rem);
+    line-height: 0.88;
+    letter-spacing: 0.02em;
+    margin-bottom: 2rem;
+  }
+
+  .hero__title span { color: var(--yellow); }
+
+  .hero__desc {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(240,240,240,0.6);
+    max-width: 460px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero__btns { display: flex; gap: 1rem; }
+
+  .btn-shop {
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    color: var(--bg);
+    background: var(--yellow);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+  }
+
+  .btn-shop:hover { background: var(--yellow2); }
+
+  .btn-ghost {
+    font-size: 0.88rem;
+    color: var(--white);
+    background: transparent;
+    border: 1px solid var(--line2);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--yellow); color: var(--yellow); }
+
+  .hero__right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .hero__promo {
+    background: var(--yellow);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .hero__promo-text {}
+
+  .hero__promo-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.8rem;
+    color: var(--bg);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .hero__promo-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(10,10,10,0.6);
+  }
+
+  .hero__promo-countdown {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.5rem;
+    color: var(--bg);
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .featured-product {
+    background: var(--bg2);
+    border: 1px solid var(--line2);
+    padding: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .featured-product:hover { border-color: var(--yellow); }
+
+  .product-img {
+    width: 80px;
+    height: 80px;
+    background: var(--bg3);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .product-info {}
+
+  .product-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .product-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+
+  .product-price {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.3rem;
+    color: var(--yellow);
+    letter-spacing: 0.03em;
+  }
+
+  .product-price .old-price {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--gray);
+    text-decoration: line-through;
+    margin-left: 0.5rem;
+  }
+
+  .product-add {
+    margin-left: auto;
+    background: var(--bg3);
+    border: 1px solid var(--line);
+    color: var(--yellow);
+    padding: 0.5rem 1rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+
+  .product-add:hover { background: var(--yellow); color: var(--bg); }
+
+  /* ── PRODUCTS ── */
+  .products {
+    padding: 6rem 0;
+    background: var(--bg2);
+  }
+
+  .products .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .p-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+  }
+
+  .p-header h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(2rem, 4vw, 4.5rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+  }
+
+  .p-header h2 span { color: var(--yellow); }
+
+  .filter-tabs { display: flex; gap: 0.5rem; }
+
+  .tab {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.1rem;
+    border: 1px solid var(--line2);
+    color: var(--gray);
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.2s;
+  }
+
+  .tab.active, .tab:hover {
+    background: var(--yellow);
+    color: var(--bg);
+    border-color: var(--yellow);
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line2);
+    border: 1px solid var(--line2);
+  }
+
+  .p-card {
+    background: var(--bg);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: background 0.25s;
+  }
+
+  .p-card:hover { background: var(--bg3); }
+
+  .p-card__badge {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    background: var(--yellow);
+    color: var(--bg);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    font-weight: 700;
+  }
+
+  .p-card__img {
+    width: 100%;
+    height: 120px;
+    background: var(--bg3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--line2);
+  }
+
+  .p-card__cat {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+
+  .p-card__name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+  }
+
+  .p-card__flavor {
+    font-size: 0.78rem;
+    color: var(--gray);
+    margin-bottom: 1rem;
+  }
+
+  .p-card__price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  .p-card__price {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.5rem;
+    color: var(--yellow);
+    letter-spacing: 0.03em;
+  }
+
+  .p-card__price small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 400;
+    color: var(--gray);
+    text-decoration: line-through;
+    letter-spacing: 0;
+  }
+
+  .p-card__btn {
+    background: var(--yellow);
+    color: var(--bg);
+    border: none;
+    padding: 0.5rem 1.1rem;
+    font-weight: 600;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .p-card__btn:hover { background: var(--yellow2); }
+
+  .p-card__stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 0.75rem;
+  }
+
+  .p-card__stars span {
+    color: var(--yellow);
+    font-size: 0.7rem;
+  }
+
+  /* ── FEATURES ── */
+  .features {
+    padding: 5rem 0;
+    border-top: 1px solid var(--line2);
+  }
+
+  .features .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--line2);
+  }
+
+  .feat {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--line2);
+    text-align: center;
+  }
+
+  .feat:last-child { border-right: none; }
+
+  .feat__icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+
+  .feat__name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .feat__desc {
+    font-size: 0.8rem;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 6rem 0;
+    background: var(--yellow);
+    color: var(--bg);
+  }
+
+  .contact .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .contact__left h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact__left p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(10,10,10,0.65);
+    margin-bottom: 2rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(10,10,10,0.15);
+  }
+
+  .contact-item__icon {
+    font-size: 1.1rem;
+    width: 36px;
+    flex-shrink: 0;
+  }
+
+  .contact-item__label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(10,10,10,0.5);
+    display: block;
+    margin-bottom: 1px;
+  }
+
+  .contact-item__val {
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  .newsletter-form {
+    background: var(--bg);
+    padding: 3rem;
+  }
+
+  .newsletter-form h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 2rem;
+    color: var(--yellow);
+    margin-bottom: 0.5rem;
+  }
+
+  .newsletter-form p {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-bottom: 2rem;
+  }
+
+  .nf-group { margin-bottom: 1rem; }
+
+  .nf-group label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 0.4rem;
+  }
+
+  .nf-group input, .nf-group select {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--line2);
+    padding: 0.85rem 1rem;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .nf-group select option { background: var(--bg3); }
+  .nf-group input:focus, .nf-group select:focus { border-color: var(--yellow); }
+
+  .btn-suscribir {
+    width: 100%;
+    background: var(--yellow);
+    color: var(--bg);
+    border: none;
+    padding: 1rem;
+    font-family: 'Anton', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+  }
+
+  .btn-suscribir:hover { background: var(--yellow2); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg3);
+    border-top: 2px solid var(--yellow);
+    padding: 2.5rem 0;
+  }
+
+  .footer__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer__brand {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.4rem;
+    color: var(--yellow);
+    letter-spacing: 0.05em;
+  }
+
+  .footer__brand span {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.45rem;
+    letter-spacing: 0.2em;
+    color: var(--gray);
+    font-weight: 300;
+    margin-top: 2px;
+  }
+
+  .footer__copy {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    color: var(--gray);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+    .features .container { grid-template-columns: repeat(2, 1fr); }
+    .feat:nth-child(2) { border-right: none; }
+    .feat:nth-child(3) { border-top: 1px solid var(--line2); }
+    .feat:nth-child(4) { border-top: 1px solid var(--line2); border-right: none; }
+  }
+
+  @media (max-width: 900px) {
+    .hero__content { grid-template-columns: 1fr; }
+    .header__top p { font-size: 0.55rem; }
+    nav { display: none; }
+    .contact .container { grid-template-columns: 1fr; gap: 3rem; }
+    .footer__inner { flex-direction: column; gap: 1rem; text-align: center; }
+    .p-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  }
+
+  @media (max-width: 600px) {
+    .product-grid { grid-template-columns: 1fr; }
+    .features .container { grid-template-columns: 1fr; }
+    .feat { border-right: none; border-bottom: 1px solid var(--line2); }
+    .hero__btns { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header__top">
+    <p>🚀 Envío gratis sobre $30.000 — Entrega en 24-48h a todo Chile · Pago seguro</p>
+  </div>
+  <div class="header__inner">
+    <div class="logo">
+      APEX
+      <span>Nutrition · Chile</span>
+    </div>
+    <nav>
+      <a href="#productos">Productos</a>
+      <a href="#marcas">Marcas</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="header__actions">
+      <a href="#contacto" class="cart-btn">🛒 Carrito (0)</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__bg-grid"></div>
+  <div class="hero__content">
+    <div class="hero__left">
+      <div class="hero__badge">N°1 en suplementos fitness Chile</div>
+      <h1 class="hero__title">SUPERA<br>TUS<br><span>LÍMITES.</span></h1>
+      <p class="hero__desc">Suplementos de calidad internacional para tu rendimiento. Proteínas, pre-entrenos, aminoácidos y vitaminas con envío a todo Chile.</p>
+      <div class="hero__btns">
+        <a href="#productos" class="btn-shop">Ver productos</a>
+        <a href="#contacto" class="btn-ghost">Asesoría gratis</a>
+      </div>
+    </div>
+    <div class="hero__right">
+      <div class="hero__promo">
+        <div class="hero__promo-text">
+          <div class="hero__promo-title">20% OFF<br>PROTEÍNAS</div>
+          <div class="hero__promo-sub">Solo por hoy · Código: APEX20</div>
+        </div>
+        <div class="hero__promo-countdown">12:47</div>
+      </div>
+      <div class="featured-product">
+        <div class="product-img">💪</div>
+        <div class="product-info">
+          <span class="product-tag">Más vendido</span>
+          <div class="product-name">Whey Protein 100% — 5 lb</div>
+          <div class="product-price">
+            $42.990
+            <span class="old-price">$54.990</span>
+          </div>
+        </div>
+        <button class="product-add">+ Agregar</button>
+      </div>
+      <div class="featured-product">
+        <div class="product-img">⚡</div>
+        <div class="product-info">
+          <span class="product-tag">Nuevo</span>
+          <div class="product-name">Pre-Workout Extremo — 400g</div>
+          <div class="product-price">
+            $29.990
+            <span class="old-price">$36.990</span>
+          </div>
+        </div>
+        <button class="product-add">+ Agregar</button>
+      </div>
+      <div class="featured-product">
+        <div class="product-img">🔥</div>
+        <div class="product-info">
+          <span class="product-tag">Oferta</span>
+          <div class="product-name">Creatina Monohidratada — 1 kg</div>
+          <div class="product-price">
+            $24.990
+            <span class="old-price">$31.990</span>
+          </div>
+        </div>
+        <button class="product-add">+ Agregar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<div class="features">
+  <div class="container">
+    <div class="feat">
+      <span class="feat__icon">🚚</span>
+      <div class="feat__name">Envío gratis</div>
+      <div class="feat__desc">Compras sobre $30.000 a todo Chile</div>
+    </div>
+    <div class="feat">
+      <span class="feat__icon">✅</span>
+      <div class="feat__name">100% original</div>
+      <div class="feat__desc">Productos importados certificados</div>
+    </div>
+    <div class="feat">
+      <span class="feat__icon">⚡</span>
+      <div class="feat__name">Despacho 24-48h</div>
+      <div class="feat__desc">Santiago y regiones principales</div>
+    </div>
+    <div class="feat">
+      <span class="feat__icon">💬</span>
+      <div class="feat__name">Asesoría gratis</div>
+      <div class="feat__desc">Nutricionista disponible via WhatsApp</div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products" id="productos">
+  <div class="container">
+    <div class="p-header">
+      <h2>NUESTROS<br><span>PRODUCTOS</span></h2>
+      <div class="filter-tabs">
+        <button class="tab active">Todos</button>
+        <button class="tab">Proteínas</button>
+        <button class="tab">Pre-Workout</button>
+        <button class="tab">Aminoácidos</button>
+      </div>
+    </div>
+    <div class="product-grid">
+      <div class="p-card">
+        <span class="p-card__badge">-22%</span>
+        <div class="p-card__img">💪</div>
+        <span class="p-card__cat">Proteínas</span>
+        <div class="p-card__name">Whey Protein Gold Standard 5lb</div>
+        <div class="p-card__flavor">Chocolate / Vainilla / Fresa</div>
+        <div class="p-card__stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          <span style="color:var(--gray);font-size:0.7rem;margin-left:4px">(142)</span>
+        </div>
+        <div class="p-card__price-row">
+          <div class="p-card__price">
+            $42.990
+            <small>$54.990</small>
+          </div>
+          <button class="p-card__btn">Agregar</button>
+        </div>
+      </div>
+      <div class="p-card">
+        <span class="p-card__badge">NUEVO</span>
+        <div class="p-card__img">⚡</div>
+        <span class="p-card__cat">Pre-Workout</span>
+        <div class="p-card__name">C4 Original Pre-Workout 390g</div>
+        <div class="p-card__flavor">Sandía / Naranja / Explosión Frutal</div>
+        <div class="p-card__stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          <span style="color:var(--gray);font-size:0.7rem;margin-left:4px">(87)</span>
+        </div>
+        <div class="p-card__price-row">
+          <div class="p-card__price">
+            $29.990
+            <small>$36.990</small>
+          </div>
+          <button class="p-card__btn">Agregar</button>
+        </div>
+      </div>
+      <div class="p-card">
+        <div class="p-card__img">🔥</div>
+        <span class="p-card__cat">Creatina</span>
+        <div class="p-card__name">Creatina Monohidratada 1 kg</div>
+        <div class="p-card__flavor">Sin sabor · Micronizada</div>
+        <div class="p-card__stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span style="color:var(--gray)">★</span>
+          <span style="color:var(--gray);font-size:0.7rem;margin-left:4px">(203)</span>
+        </div>
+        <div class="p-card__price-row">
+          <div class="p-card__price">
+            $24.990
+            <small>$31.990</small>
+          </div>
+          <button class="p-card__btn">Agregar</button>
+        </div>
+      </div>
+      <div class="p-card">
+        <span class="p-card__badge">-15%</span>
+        <div class="p-card__img">🌿</div>
+        <span class="p-card__cat">Plant-Based</span>
+        <div class="p-card__name">Proteína Vegana 2lb</div>
+        <div class="p-card__flavor">Chocolate / Moka / Natural</div>
+        <div class="p-card__stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          <span style="color:var(--gray);font-size:0.7rem;margin-left:4px">(56)</span>
+        </div>
+        <div class="p-card__price-row">
+          <div class="p-card__price">
+            $31.990
+            <small>$37.500</small>
+          </div>
+          <button class="p-card__btn">Agregar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="container">
+    <div class="contact__left">
+      <h2>¿NECESITAS<br>ASESORÍA?</h2>
+      <p>Nuestro equipo de nutricionistas te ayuda a elegir el suplemento correcto según tus objetivos.</p>
+      <div class="contact-item">
+        <span class="contact-item__icon">📞</span>
+        <div>
+          <span class="contact-item__label">WhatsApp</span>
+          <span class="contact-item__val">+56 9 2345 6789</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item__icon">✉️</span>
+        <div>
+          <span class="contact-item__label">Email</span>
+          <span class="contact-item__val">contacto@apexnutrition.cl</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item__icon">📍</span>
+        <div>
+          <span class="contact-item__label">Tienda física</span>
+          <span class="contact-item__val">Av. Apoquindo 5000, Las Condes</span>
+        </div>
+      </div>
+    </div>
+    <div class="newsletter-form">
+      <h3>ÚNETE AL<br>CLUB APEX</h3>
+      <p>Recibe descuentos exclusivos, lanzamientos y consejos de nutrición directo a tu correo.</p>
+      <form onsubmit="handleSubmit(event)">
+        <div class="nf-group">
+          <label>Tu nombre</label>
+          <input type="text" placeholder="Felipe Ramírez" required>
+        </div>
+        <div class="nf-group">
+          <label>Email</label>
+          <input type="email" placeholder="felipe@correo.cl" required>
+        </div>
+        <div class="nf-group">
+          <label>Tu objetivo</label>
+          <select>
+            <option>Ganar masa muscular</option>
+            <option>Perder grasa</option>
+            <option>Mejorar rendimiento</option>
+            <option>Mantenerme saludable</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-suscribir">QUIERO MI DESCUENTO →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer__inner">
+    <div class="footer__brand">
+      APEX Nutrition
+      <span>Suplementos fitness · Chile</span>
+    </div>
+    <p class="footer__copy">© 2025 APEX Nutrition SpA · contacto@apexnutrition.cl</p>
+  </div>
+</footer>
+
+<script>
+// Countdown timer
+let seconds = 12 * 60 + 47;
+const countdown = document.querySelector('.hero__promo-countdown');
+if (countdown) {
+  setInterval(() => {
+    seconds--;
+    if (seconds < 0) seconds = 13 * 60;
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    countdown.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  }, 1000);
+}
+
+// Tab filtering
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+  });
+});
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type=submit]');
+  btn.textContent = '¡SUSCRITO! ✓ REVISA TU EMAIL';
+  setTimeout(() => {
+    btn.textContent = 'QUIERO MI DESCUENTO →';
+    e.target.reset();
+  }, 3000);
+}
+</script>
+</body>
+</html>

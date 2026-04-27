@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aranda & Asociados — Contadores Auditores</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0A0A0A;
+    --white: #F5F1E8;
+    --gold: #B8860B;
+    --gold-light: #D4A017;
+    --line: rgba(184,134,11,0.3);
+    --text-secondary: #5A5347;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Lora', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.6;
+  }
+
+  /* TYPOGRAPHY */
+  .serif { font-family: 'Playfair Display', Georgia, serif; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+
+  /* LAYOUT */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .rule {
+    display: block;
+    height: 1px;
+    background: var(--line);
+    width: 100%;
+  }
+
+  .rule--gold {
+    background: var(--gold);
+    height: 2px;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.97);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(8px);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .logo__name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .logo__sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  nav { display: flex; align-items: center; gap: 2.5rem; }
+
+  nav a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--gold); }
+
+  .btn-header {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    padding: 0.6rem 1.4rem;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .btn-header:hover { background: var(--gold-light); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+  }
+
+  .hero__left {
+    padding: 7rem 4rem 5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid var(--line);
+    max-width: 600px;
+    margin-left: auto;
+  }
+
+  .hero__tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero__tag::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero__title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+  }
+
+  .hero__title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero__lead {
+    font-family: 'Lora', serif;
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(245,241,232,0.7);
+    max-width: 440px;
+    margin-bottom: 3rem;
+  }
+
+  .hero__cta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); }
+
+  .btn-secondary {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+
+  .btn-secondary:hover { color: var(--gold); }
+
+  .hero__right {
+    padding: 7rem 2rem 5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .hero__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .stat {
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--line);
+    border-top: none;
+    border-left: none;
+  }
+
+  .stat:nth-child(odd) { border-left: 1px solid var(--line); }
+  .stat:nth-child(1), .stat:nth-child(2) { border-top: 1px solid var(--line); }
+
+  .stat__num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat__label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  /* ── BELT ── */
+  .belt {
+    background: var(--gold);
+    padding: 1rem 2rem;
+    overflow: hidden;
+  }
+
+  .belt__track {
+    display: flex;
+    gap: 4rem;
+    animation: scroll-left 25s linear infinite;
+    width: max-content;
+  }
+
+  .belt__item {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .belt__item::before {
+    content: '◆';
+    font-size: 0.5rem;
+  }
+
+  @keyframes scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── SERVICES ── */
+  .services {
+    padding: 8rem 0;
+  }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+    align-items: end;
+    margin-bottom: 5rem;
+  }
+
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    font-weight: 900;
+    color: var(--gold);
+    opacity: 0.25;
+    line-height: 1;
+  }
+
+  .section-title-wrap {}
+
+  .section-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+  }
+
+  .service-card {
+    padding: 3rem;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+
+  .service-card:hover::before { width: 100%; }
+  .service-card:hover { background: rgba(184,134,11,0.05); }
+
+  .service-icon {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--gold);
+    opacity: 0.4;
+    margin-bottom: 1.5rem;
+    display: block;
+    font-style: italic;
+  }
+
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .service-desc {
+    font-family: 'Lora', serif;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: rgba(245,241,232,0.65);
+    margin-bottom: 1.5rem;
+  }
+
+  .service-list {
+    list-style: none;
+  }
+
+  .service-list li {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(184,134,11,0.15);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .service-list li::before { content: '—'; opacity: 0.5; }
+
+  /* ── TRUST ── */
+  .trust {
+    background: var(--white);
+    color: var(--black);
+    padding: 8rem 0;
+  }
+
+  .trust .section-title { color: var(--black); }
+  .trust .section-num { color: var(--black); }
+  .trust .section-tag { color: var(--gold); }
+
+  .trust__grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 0;
+    border: 1px solid rgba(0,0,0,0.15);
+    margin-top: 3rem;
+  }
+
+  .trust__left {
+    padding: 4rem 3rem;
+    border-right: 1px solid rgba(0,0,0,0.15);
+    background: var(--black);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .trust__quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+
+  .trust__author {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .trust__creds {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cred {
+    padding: 2.5rem;
+    border-right: 1px solid rgba(0,0,0,0.12);
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+  }
+
+  .cred:nth-child(even) { border-right: none; }
+  .cred:nth-child(3), .cred:nth-child(4) { border-bottom: none; }
+
+  .cred__num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .cred__text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #4A4540;
+    line-height: 1.5;
+  }
+
+  /* ── FORM ── */
+  .contact {
+    padding: 8rem 0;
+  }
+
+  .contact__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6rem;
+    align-items: start;
+    margin-top: 4rem;
+  }
+
+  .contact__info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .contact__info p {
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: rgba(245,241,232,0.65);
+    margin-bottom: 2.5rem;
+  }
+
+  .contact__details { list-style: none; }
+
+  .contact__details li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .contact__details .detail-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    min-width: 80px;
+  }
+
+  .contact__details .detail-val {
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    color: var(--white);
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--line);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .form-row--full { grid-template-columns: 1fr; }
+
+  .form-field {
+    position: relative;
+    border-right: 1px solid var(--line);
+  }
+
+  .form-field:last-child { border-right: none; }
+
+  .form-field label {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 1rem 1.5rem 0;
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--white);
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    padding: 0.5rem 1.5rem 1rem;
+    resize: none;
+    -webkit-appearance: none;
+  }
+
+  .form-field select option {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .form-field textarea { min-height: 120px; }
+
+  .form-submit {
+    padding: 1.5rem;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .form-note {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+  }
+
+  .btn-submit {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    border: none;
+    padding: 1rem 2.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-submit:hover { background: var(--gold-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #050505;
+    border-top: 1px solid var(--line);
+    padding: 3rem 0;
+  }
+
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .footer__logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .footer__logo span {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 3px;
+  }
+
+  .footer__copy {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+
+  .footer__links {
+    display: flex;
+    gap: 2rem;
+    justify-content: flex-end;
+  }
+
+  .footer__links a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer__links a:hover { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero__tag { animation: fade-up 0.6s ease both; animation-delay: 0.1s; }
+  .hero__title { animation: fade-up 0.7s ease both; animation-delay: 0.25s; }
+  .hero__lead { animation: fade-up 0.7s ease both; animation-delay: 0.4s; }
+  .hero__cta { animation: fade-up 0.7s ease both; animation-delay: 0.55s; }
+  .hero__stats { animation: fade-up 0.8s ease both; animation-delay: 0.3s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero__left { border-right: none; border-bottom: 1px solid var(--line); padding: 5rem 1.5rem 3rem; max-width: 100%; margin-left: 0; }
+    .hero__right { padding: 3rem 1.5rem; }
+    .hero__stats { grid-template-columns: 1fr 1fr; }
+
+    nav { display: none; }
+
+    .services__grid { grid-template-columns: 1fr; }
+    .service-card { border-right: 1px solid var(--line); }
+
+    .trust__grid { grid-template-columns: 1fr; }
+    .trust__left { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.15); }
+
+    .contact__grid { grid-template-columns: 1fr; gap: 3rem; }
+
+    .form-row { grid-template-columns: 1fr; }
+    .form-field { border-right: none; }
+
+    .footer__inner { grid-template-columns: 1fr; text-align: center; }
+    .footer__links { justify-content: center; }
+
+    .section-header { grid-template-columns: 1fr; gap: 1rem; }
+    .section-num { font-size: 3rem; }
+  }
+
+  @media (max-width: 600px) {
+    .hero__title { font-size: 2.8rem; }
+    .trust__creds { grid-template-columns: 1fr; }
+    .cred { border-right: none !important; }
+    .cred:nth-child(3) { border-bottom: 1px solid rgba(0,0,0,0.12) !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header__inner">
+    <div class="logo">
+      <span class="logo__name">Aranda &amp; Asociados</span>
+      <span class="logo__sub">Contadores Auditores · Santiago</span>
+    </div>
+    <nav>
+      <a href="#servicios">Servicios</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a href="#contacto" class="btn-header">Consulta gratis</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__left">
+    <div class="hero__tag">Estudio Contable — Desde 2003</div>
+    <h1 class="hero__title serif">
+      Orden<br>
+      <em>financiero</em><br>
+      sin sorpresas.
+    </h1>
+    <p class="hero__lead">
+      Llevamos la contabilidad de empresas chilenas con precisión, conocimiento tributario actualizado y respuesta directa. Sin intermediarios, sin letra chica.
+    </p>
+    <div class="hero__cta">
+      <a href="#contacto" class="btn-primary">Agendar consulta</a>
+      <a href="#servicios" class="btn-secondary">Ver servicios</a>
+    </div>
+  </div>
+  <div class="hero__right">
+    <div class="hero__stats">
+      <div class="stat">
+        <span class="stat__num">+200</span>
+        <span class="stat__label">Empresas<br>atendidas</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num">22</span>
+        <span class="stat__label">Años de<br>experiencia</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num">0</span>
+        <span class="stat__label">Multas SII<br>a clientes</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num">48h</span>
+        <span class="stat__label">Tiempo de<br>respuesta</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BELT -->
+<div class="belt">
+  <div class="belt__track">
+    <span class="belt__item">Contabilidad mensual</span>
+    <span class="belt__item">Declaración de renta</span>
+    <span class="belt__item">Auditoría financiera</span>
+    <span class="belt__item">Liquidación de sueldos</span>
+    <span class="belt__item">IVA y retenciones</span>
+    <span class="belt__item">Inicio de actividades</span>
+    <span class="belt__item">Asesoría SII</span>
+    <span class="belt__item">Balances anuales</span>
+    <span class="belt__item">Contabilidad mensual</span>
+    <span class="belt__item">Declaración de renta</span>
+    <span class="belt__item">Auditoría financiera</span>
+    <span class="belt__item">Liquidación de sueldos</span>
+    <span class="belt__item">IVA y retenciones</span>
+    <span class="belt__item">Inicio de actividades</span>
+    <span class="belt__item">Asesoría SII</span>
+    <span class="belt__item">Balances anuales</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="servicios">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num serif">01</span>
+      <div class="section-title-wrap">
+        <span class="section-tag">Servicios</span>
+        <h2 class="section-title serif">Lo que hacemos<br>bien.</h2>
+      </div>
+    </div>
+    <div class="services__grid">
+
+      <div class="service-card">
+        <span class="service-icon">I</span>
+        <h3 class="service-name serif">Contabilidad Mensual</h3>
+        <p class="service-desc">Registro riguroso de todas las operaciones de su empresa. Informes mensuales claros, libros contables al día y cumplimiento tributario asegurado.</p>
+        <ul class="service-list">
+          <li>Libro de compras y ventas</li>
+          <li>Declaración de IVA (F29)</li>
+          <li>Balance mensual ejecutivo</li>
+          <li>Conciliación bancaria</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">II</span>
+        <h3 class="service-name serif">Asesoría Tributaria</h3>
+        <p class="service-desc">Planificación fiscal ajustada a la normativa vigente del SII. Minimizamos la carga tributaria dentro de la ley y evitamos contingencias.</p>
+        <ul class="service-list">
+          <li>Declaración anual de renta (F22)</li>
+          <li>Optimización de PPM</li>
+          <li>Respuesta a notificaciones SII</li>
+          <li>Régimen tributario adecuado (14A/14D)</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">III</span>
+        <h3 class="service-name serif">Remuneraciones</h3>
+        <p class="service-desc">Gestión completa de sueldos, cotizaciones previsionales y trámites laborales. Su empresa cumple con el Código del Trabajo sin preocupaciones.</p>
+        <ul class="service-list">
+          <li>Liquidaciones de sueldo</li>
+          <li>Cotizaciones AFP y FONASA/ISAPRE</li>
+          <li>Finiquitos y contratos</li>
+          <li>Planilla DJ1887</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <span class="service-icon">IV</span>
+        <h3 class="service-name serif">Auditoría y Constitución</h3>
+        <p class="service-desc">Revisión independiente de estados financieros y acompañamiento en la apertura o restructuración de empresas ante el SII y el Registro Civil.</p>
+        <ul class="service-list">
+          <li>Auditoría de estados financieros</li>
+          <li>Inicio de actividades SII</li>
+          <li>Constitución de sociedades</li>
+          <li>Due diligence contable</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust" id="nosotros">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num serif">02</span>
+      <div class="section-title-wrap">
+        <span class="section-tag">Por qué elegirnos</span>
+        <h2 class="section-title serif">Trayectoria que<br>respalda cada número.</h2>
+      </div>
+    </div>
+    <div class="trust__grid">
+      <div class="trust__left">
+        <blockquote class="trust__quote">
+          "Hace cinco años no dormía tranquilo en época de renta. Hoy Aranda me avisa con un mes de anticipación lo que voy a pagar."
+        </blockquote>
+        <span class="trust__author">— Cliente pyme, rubro construcción, Santiago</span>
+      </div>
+      <div class="trust__creds">
+        <div class="cred">
+          <span class="cred__num">+200</span>
+          <span class="cred__text">Empresas<br>atendidas activamente</span>
+        </div>
+        <div class="cred">
+          <span class="cred__num">22</span>
+          <span class="cred__text">Años continuos<br>en ejercicio</span>
+        </div>
+        <div class="cred">
+          <span class="cred__num">100%</span>
+          <span class="cred__text">Cumplimiento SII<br>en cartera activa</span>
+        </div>
+        <div class="cred">
+          <span class="cred__num">3</span>
+          <span class="cred__text">Contadores titulados<br>en el equipo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-num serif">03</span>
+      <div class="section-title-wrap">
+        <span class="section-tag">Contacto</span>
+        <h2 class="section-title serif">Hablemos de<br>su empresa.</h2>
+      </div>
+    </div>
+    <div class="contact__grid">
+      <div class="contact__info">
+        <h3 class="serif">La primera consulta es sin costo.</h3>
+        <p>Cuéntenos en qué etapa está su empresa y qué le preocupa. Evaluamos su situación y le proponemos un servicio a medida.</p>
+        <ul class="contact__details">
+          <li>
+            <span class="detail-label">Teléfono</span>
+            <span class="detail-val">+56 9 2345 6789</span>
+          </li>
+          <li>
+            <span class="detail-label">Email</span>
+            <span class="detail-val">contacto@arandaasociados.cl</span>
+          </li>
+          <li>
+            <span class="detail-label">Ubicación</span>
+            <span class="detail-val">Providencia, Santiago</span>
+          </li>
+          <li>
+            <span class="detail-label">Horario</span>
+            <span class="detail-val">Lun–Vie 09:00–18:00</span>
+          </li>
+        </ul>
+      </div>
+      <form class="form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Juan Pérez" required>
+          </div>
+          <div class="form-field">
+            <label for="empresa">Empresa</label>
+            <input type="text" id="empresa" name="empresa" placeholder="Mi Empresa SpA">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="juan@empresa.cl" required>
+          </div>
+          <div class="form-field">
+            <label for="fono">Teléfono</label>
+            <input type="tel" id="fono" name="fono" placeholder="+56 9 XXXX XXXX">
+          </div>
+        </div>
+        <div class="form-row form-row--full">
+          <div class="form-field" style="border-right:none">
+            <label for="servicio">Servicio de interés</label>
+            <select id="servicio" name="servicio">
+              <option value="">Seleccione un servicio</option>
+              <option>Contabilidad mensual</option>
+              <option>Asesoría tributaria</option>
+              <option>Remuneraciones</option>
+              <option>Auditoría</option>
+              <option>Constitución de empresa</option>
+              <option>Otro</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row form-row--full">
+          <div class="form-field" style="border-right:none">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" placeholder="Cuéntenos brevemente su situación..."></textarea>
+          </div>
+        </div>
+        <div class="form-submit">
+          <span class="form-note">Sus datos son confidenciales.</span>
+          <button type="submit" class="btn-submit">Enviar consulta →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer__inner">
+      <div class="footer__logo">
+        Aranda &amp; Asociados
+        <span>Contadores Auditores · Santiago de Chile</span>
+      </div>
+      <p class="footer__copy mono">© 2025 Aranda &amp; Asociados. Todos los derechos reservados.</p>
+      <div class="footer__links">
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-submit');
+  btn.textContent = 'Enviado ✓';
+  btn.style.background = '#2D6A2D';
+  btn.style.color = '#fff';
+  setTimeout(() => {
+    btn.textContent = 'Enviar consulta →';
+    btn.style.background = '';
+    btn.style.color = '';
+    e.target.reset();
+  }, 3000);
+}
+</script>
+</body>
+</html>

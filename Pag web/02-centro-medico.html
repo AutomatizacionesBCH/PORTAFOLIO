@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centro Médico Altavida — Providencia, Santiago</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white: #FAFCFF;
+    --navy: #0C2D4E;
+    --teal: #0D8C7A;
+    --teal-light: #12A88F;
+    --teal-pale: #E8F5F3;
+    --line: #D6E4EF;
+    --text: #1A3347;
+    --text-soft: #5B7A8F;
+    --red: #E05252;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250,252,255,0.96);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(12px);
+  }
+
+  .header__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .logo__icon {
+    width: 40px;
+    height: 40px;
+    background: var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .logo__cross {
+    width: 18px;
+    height: 18px;
+    position: relative;
+  }
+
+  .logo__cross::before,
+  .logo__cross::after {
+    content: '';
+    position: absolute;
+    background: white;
+  }
+
+  .logo__cross::before {
+    width: 4px; height: 18px;
+    left: 7px; top: 0;
+  }
+
+  .logo__cross::after {
+    width: 18px; height: 4px;
+    top: 7px; left: 0;
+  }
+
+  .logo__text {}
+
+  .logo__name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+    display: block;
+    line-height: 1;
+  }
+
+  .logo__sub {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal);
+    display: block;
+    margin-top: 3px;
+  }
+
+  nav { display: flex; gap: 2rem; align-items: center; }
+
+  nav a {
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--text-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--teal); }
+
+  .header__emergency {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--red);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .header__emergency:hover { background: #c94444; }
+
+  /* ── HERO ── */
+  .hero {
+    padding-top: 72px;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+
+  .hero__left {
+    background: var(--navy);
+    color: white;
+    padding: 6rem 4rem 6rem 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero__left::after {
+    content: '+';
+    position: absolute;
+    bottom: -2rem;
+    right: -1rem;
+    font-family: 'DM Serif Display', serif;
+    font-size: 20rem;
+    color: rgba(13,140,122,0.1);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(13,140,122,0.2);
+    border: 1px solid rgba(13,140,122,0.4);
+    color: var(--teal-light);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    margin-bottom: 2.5rem;
+    width: fit-content;
+  }
+
+  .hero__badge::before {
+    content: '●';
+    font-size: 0.4rem;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero__title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 4vw, 4.5rem);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    color: white;
+  }
+
+  .hero__title em {
+    font-style: italic;
+    color: var(--teal-light);
+  }
+
+  .hero__lead {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.65);
+    max-width: 400px;
+    margin-bottom: 3rem;
+  }
+
+  .hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-main {
+    background: var(--teal);
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+  }
+
+  .btn-main:hover { background: var(--teal-light); }
+
+  .btn-ghost {
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.8);
+    padding: 1rem 2rem;
+    font-size: 0.88rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--teal-light); color: var(--teal-light); }
+
+  .hero__right {
+    background: var(--white);
+    padding: 4rem 4rem 4rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .hero__right-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.5rem;
+  }
+
+  .specialty-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--line);
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .specialty-card:hover {
+    border-color: var(--teal);
+    transform: translateX(6px);
+    box-shadow: -4px 0 0 0 var(--teal);
+  }
+
+  .specialty-card__icon {
+    width: 44px;
+    height: 44px;
+    background: var(--teal-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+
+  .specialty-card__name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem;
+    color: var(--navy);
+  }
+
+  .specialty-card__meta {
+    font-size: 0.78rem;
+    color: var(--text-soft);
+    margin-top: 2px;
+  }
+
+  .specialty-card__arrow {
+    margin-left: auto;
+    color: var(--teal);
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .specialty-card:hover .specialty-card__arrow { opacity: 1; }
+
+  /* ── NUMBERS STRIP ── */
+  .strip {
+    background: var(--teal);
+    color: white;
+    padding: 3rem 0;
+  }
+
+  .strip__grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    divide: var(--teal-light);
+  }
+
+  .strip__item {
+    text-align: center;
+    padding: 1rem;
+    border-right: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .strip__item:last-child { border-right: none; }
+
+  .strip__num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3rem;
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .strip__label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  /* ── SERVICES ── */
+  .services {
+    padding: 8rem 0;
+  }
+
+  .services .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .s-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .s-header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3vw, 3rem);
+    color: var(--navy);
+    line-height: 1.1;
+  }
+
+  .s-header h2 em { font-style: italic; color: var(--teal); }
+
+  .s-header p {
+    max-width: 320px;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: var(--text-soft);
+  }
+
+  .services__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .svc {
+    background: var(--white);
+    border: 1px solid var(--line);
+    padding: 2.5rem;
+    position: relative;
+    transition: box-shadow 0.25s;
+  }
+
+  .svc::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--teal);
+    transition: height 0.35s ease;
+  }
+
+  .svc:hover::before { height: 100%; }
+  .svc:hover { box-shadow: 0 8px 32px rgba(13,140,122,0.08); }
+
+  .svc__num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--teal);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .svc__name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .svc__desc {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: var(--text-soft);
+    margin-bottom: 1.5rem;
+  }
+
+  .svc__tag {
+    display: inline-block;
+    background: var(--teal-pale);
+    color: var(--teal);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+  }
+
+  /* ── TEAM ── */
+  .team {
+    background: var(--navy);
+    color: white;
+    padding: 8rem 0;
+  }
+
+  .team .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .team__header {
+    margin-bottom: 4rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .team__header h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 3vw, 3rem);
+    line-height: 1.1;
+  }
+
+  .team__header h2 em { font-style: italic; color: var(--teal-light); }
+
+  .team__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .doctor-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .doctor-card__avatar {
+    width: 64px;
+    height: 64px;
+    background: var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 1.25rem;
+  }
+
+  .doctor-card__name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .doctor-card__specialty {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .doctor-card__desc {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 8rem 0;
+    background: var(--teal-pale);
+  }
+
+  .contact .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .contact__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+
+  .contact__info h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  .contact__info p {
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: var(--text-soft);
+    margin-bottom: 2rem;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .info-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    color: white;
+  }
+
+  .info-content {}
+
+  .info-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .info-val {
+    font-size: 0.95rem;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  .contact__form {
+    background: white;
+    border: 1px solid var(--line);
+    padding: 2.5rem;
+  }
+
+  .contact__form h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    color: var(--navy);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .form-group label {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    padding: 0.85rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.92rem;
+    color: var(--text);
+    background: white;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--teal); }
+
+  .form-group textarea { min-height: 100px; resize: vertical; }
+
+  .form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .btn-form {
+    width: 100%;
+    background: var(--teal);
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-form:hover { background: var(--teal-light); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    color: white;
+    padding: 3rem 0;
+    border-top: 3px solid var(--teal);
+  }
+
+  .footer__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer__brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+  }
+
+  .footer__brand span {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-top: 3px;
+  }
+
+  .footer__copy {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero__badge { animation: fade-in 0.5s ease both 0.1s; }
+  .hero__title { animation: fade-in 0.6s ease both 0.2s; }
+  .hero__lead { animation: fade-in 0.6s ease both 0.35s; }
+  .hero__actions { animation: fade-in 0.6s ease both 0.5s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero__left { padding: 5rem 1.5rem 3rem; }
+    .hero__left::after { display: none; }
+    .hero__right { padding: 3rem 1.5rem; }
+    nav { display: none; }
+    .strip__grid { grid-template-columns: repeat(2,1fr); }
+    .strip__item { border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .services__grid { grid-template-columns: 1fr 1fr; }
+    .team__grid { grid-template-columns: 1fr 1fr; }
+    .contact__grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .s-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .team__header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .footer__inner { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    .services__grid { grid-template-columns: 1fr; }
+    .team__grid { grid-template-columns: 1fr; }
+    .form-row2 { grid-template-columns: 1fr; }
+    .strip__grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header__inner">
+    <div class="logo">
+      <div class="logo__icon"><div class="logo__cross"></div></div>
+      <div class="logo__text">
+        <span class="logo__name">Centro Médico Altavida</span>
+        <span class="logo__sub">Providencia · Santiago · Chile</span>
+      </div>
+    </div>
+    <nav>
+      <a href="#especialidades">Especialidades</a>
+      <a href="#equipo">Equipo</a>
+      <a href="#contacto">Agenda</a>
+    </nav>
+    <a href="tel:+56923456789" class="header__emergency">🚨 Urgencias: +56 9 2345 6789</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__left">
+    <div class="hero__badge">Atención disponible · Lun–Sáb</div>
+    <h1 class="hero__title">Su salud merece<br><em>atención real,</em><br>no esperas.</h1>
+    <p class="hero__lead">Médicos especialistas con horas disponibles esta semana. Sin largas listas de espera, con la calidad de un centro privado.</p>
+    <div class="hero__actions">
+      <a href="#contacto" class="btn-main">Agendar hora</a>
+      <a href="#especialidades" class="btn-ghost">Ver especialidades</a>
+    </div>
+  </div>
+  <div class="hero__right">
+    <p class="hero__right-title">Acceso rápido — especialidades</p>
+    <a href="#contacto" class="specialty-card">
+      <div class="specialty-card__icon">🫀</div>
+      <div>
+        <div class="specialty-card__name">Cardiología</div>
+        <div class="specialty-card__meta">Horas disponibles · Esta semana</div>
+      </div>
+      <span class="specialty-card__arrow">→</span>
+    </a>
+    <a href="#contacto" class="specialty-card">
+      <div class="specialty-card__icon">🦴</div>
+      <div>
+        <div class="specialty-card__name">Traumatología</div>
+        <div class="specialty-card__meta">Horas disponibles · Próximos 3 días</div>
+      </div>
+      <span class="specialty-card__arrow">→</span>
+    </a>
+    <a href="#contacto" class="specialty-card">
+      <div class="specialty-card__icon">🧬</div>
+      <div>
+        <div class="specialty-card__name">Medicina Interna</div>
+        <div class="specialty-card__meta">Horas disponibles · Hoy</div>
+      </div>
+      <span class="specialty-card__arrow">→</span>
+    </a>
+    <a href="#contacto" class="specialty-card">
+      <div class="specialty-card__icon">🧠</div>
+      <div>
+        <div class="specialty-card__name">Neurología</div>
+        <div class="specialty-card__meta">Horas disponibles · Mañana</div>
+      </div>
+      <span class="specialty-card__arrow">→</span>
+    </a>
+    <a href="#contacto" class="specialty-card">
+      <div class="specialty-card__icon">👁️</div>
+      <div>
+        <div class="specialty-card__name">Oftalmología</div>
+        <div class="specialty-card__meta">Horas disponibles · Esta semana</div>
+      </div>
+      <span class="specialty-card__arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip__grid">
+    <div class="strip__item">
+      <span class="strip__num">+15</span>
+      <span class="strip__label">Especialidades</span>
+    </div>
+    <div class="strip__item">
+      <span class="strip__num">+8.000</span>
+      <span class="strip__label">Pacientes atendidos</span>
+    </div>
+    <div class="strip__item">
+      <span class="strip__num">12</span>
+      <span class="strip__label">Médicos especialistas</span>
+    </div>
+    <div class="strip__item">
+      <span class="strip__num">98%</span>
+      <span class="strip__label">Satisfacción</span>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="especialidades">
+  <div class="container">
+    <div class="s-header">
+      <h2>Especialidades<br><em>médicas</em></h2>
+      <p>Atención de calidad en las especialidades que más necesitan las familias chilenas. Médicos con formación universitaria y vasta experiencia clínica.</p>
+    </div>
+    <div class="services__grid">
+      <div class="svc">
+        <span class="svc__num">01 — Especialidad</span>
+        <h3 class="svc__name">Medicina General</h3>
+        <p class="svc__desc">Consultas de atención primaria, control de enfermedades crónicas, certificados médicos y derivaciones oportunas.</p>
+        <span class="svc__tag">Desde $25.000</span>
+      </div>
+      <div class="svc">
+        <span class="svc__num">02 — Especialidad</span>
+        <h3 class="svc__name">Cardiología</h3>
+        <p class="svc__desc">ECG, Holter, ecocardiograma y manejo de hipertensión, arritmias y enfermedades coronarias.</p>
+        <span class="svc__tag">Desde $45.000</span>
+      </div>
+      <div class="svc">
+        <span class="svc__num">03 — Especialidad</span>
+        <h3 class="svc__name">Traumatología</h3>
+        <p class="svc__desc">Fracturas, lesiones deportivas, patología de columna y articulaciones. Radiografía en el mismo centro.</p>
+        <span class="svc__tag">Desde $40.000</span>
+      </div>
+      <div class="svc">
+        <span class="svc__num">04 — Especialidad</span>
+        <h3 class="svc__name">Neurología</h3>
+        <p class="svc__desc">Cefaleas, epilepsia, vértigo y trastornos del sueño. Control periódico y manejo farmacológico.</p>
+        <span class="svc__tag">Desde $50.000</span>
+      </div>
+      <div class="svc">
+        <span class="svc__num">05 — Especialidad</span>
+        <h3 class="svc__name">Ginecología</h3>
+        <p class="svc__desc">Control preventivo, Papanicolau, ecografía ginecológica y acompañamiento durante el embarazo.</p>
+        <span class="svc__tag">Desde $38.000</span>
+      </div>
+      <div class="svc">
+        <span class="svc__num">06 — Especialidad</span>
+        <h3 class="svc__name">Laboratorio Clínico</h3>
+        <p class="svc__desc">Exámenes de sangre, orina y perfil bioquímico. Resultados en el mismo día para la mayoría de los exámenes.</p>
+        <span class="svc__tag">Resultados en 24h</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="equipo">
+  <div class="container">
+    <div class="team__header">
+      <h2>Nuestro<br><em>equipo médico</em></h2>
+      <p style="max-width:260px;font-size:0.88rem;color:rgba(255,255,255,0.55);line-height:1.7">Médicos titulados en las mejores universidades de Chile con formación de postgrado.</p>
+    </div>
+    <div class="team__grid">
+      <div class="doctor-card">
+        <div class="doctor-card__avatar">GA</div>
+        <h3 class="doctor-card__name">Dra. Gloria Araya</h3>
+        <span class="doctor-card__specialty">Cardiología · U. de Chile</span>
+        <p class="doctor-card__desc">15 años de ejercicio clínico. Especialización en ecocardiografía avanzada en la Universidad de Barcelona.</p>
+      </div>
+      <div class="doctor-card">
+        <div class="doctor-card__avatar">RM</div>
+        <h3 class="doctor-card__name">Dr. Rodrigo Molina</h3>
+        <span class="doctor-card__specialty">Traumatología · PUC</span>
+        <p class="doctor-card__desc">Especialista en artroscopía de rodilla y hombro. Médico de selecciones deportivas regionales.</p>
+      </div>
+      <div class="doctor-card">
+        <div class="doctor-card__avatar">CS</div>
+        <h3 class="doctor-card__name">Dra. Catalina Silva</h3>
+        <span class="doctor-card__specialty">Neurología · U. de Concepción</span>
+        <p class="doctor-card__desc">Formación en epileptología y trastornos del movimiento. Más de 10 años en el sistema público y privado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="container">
+    <div class="contact__grid">
+      <div class="contact__info">
+        <h3>Agende su<br>hora en minutos.</h3>
+        <p>Rellene el formulario y nos comunicamos en menos de 2 horas para confirmar su cita. También puede llamarnos directamente.</p>
+        <div class="info-item">
+          <div class="info-icon">📞</div>
+          <div class="info-content">
+            <span class="info-label">Teléfono</span>
+            <span class="info-val">+56 9 2345 6789</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">✉️</div>
+          <div class="info-content">
+            <span class="info-label">Email</span>
+            <span class="info-val">agenda@altavida.cl</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📍</div>
+          <div class="info-content">
+            <span class="info-label">Dirección</span>
+            <span class="info-val">Av. Providencia 1234, piso 3<br>Providencia, Santiago</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">🕐</div>
+          <div class="info-content">
+            <span class="info-label">Horario</span>
+            <span class="info-val">Lun–Vie 8:00–20:00<br>Sáb 9:00–14:00</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact__form">
+        <h4>Solicitar hora médica</h4>
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-row2">
+            <div class="form-group">
+              <label>Nombre</label>
+              <input type="text" placeholder="María González" required>
+            </div>
+            <div class="form-group">
+              <label>RUT</label>
+              <input type="text" placeholder="12.345.678-9">
+            </div>
+          </div>
+          <div class="form-row2">
+            <div class="form-group">
+              <label>Teléfono</label>
+              <input type="tel" placeholder="+56 9 XXXX XXXX" required>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="maria@correo.cl">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Especialidad</label>
+            <select>
+              <option>Seleccione especialidad</option>
+              <option>Medicina General</option>
+              <option>Cardiología</option>
+              <option>Traumatología</option>
+              <option>Neurología</option>
+              <option>Ginecología</option>
+              <option>Laboratorio</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>¿Tiene FONASA o ISAPRE?</label>
+            <select>
+              <option>FONASA — Tramo A</option>
+              <option>FONASA — Tramo B</option>
+              <option>FONASA — Tramo C</option>
+              <option>FONASA — Tramo D</option>
+              <option>ISAPRE</option>
+              <option>Particular</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Motivo de consulta (opcional)</label>
+            <textarea placeholder="Describa brevemente su problema de salud..."></textarea>
+          </div>
+          <button type="submit" class="btn-form">Solicitar hora →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer__inner">
+    <div class="footer__brand">
+      Centro Médico Altavida
+      <span>Providencia · Santiago de Chile</span>
+    </div>
+    <p class="footer__copy">© 2025 Centro Médico Altavida. Todos los derechos reservados.</p>
+    <p class="footer__copy">agenda@altavida.cl · +56 9 2345 6789</p>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-form');
+  btn.textContent = 'Solicitud enviada ✓';
+  btn.style.background = '#0C2D4E';
+  setTimeout(() => {
+    btn.textContent = 'Solicitar hora →';
+    btn.style.background = '';
+    e.target.reset();
+  }, 3000);
+}
+</script>
+</body>
+</html>

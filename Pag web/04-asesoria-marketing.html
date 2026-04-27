@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Núcleo Studio — Asesoría de Marketing Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Outfit:wght@300;400;500&family=Syne+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --black: #0F0F0F;
+    --magenta: #E8005A;
+    --magenta2: #FF1A6B;
+    --lime: #C6F135;
+    --lime2: #D4FF3D;
+    --purple: #2D0060;
+    --text-soft: #5C5C5C;
+    --line: rgba(15,15,15,0.1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--black);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    background: var(--magenta);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    mix-blend-mode: multiply;
+    transition: transform 0.15s ease, width 0.15s, height 0.15s;
+    transform: translate(-50%, -50%);
+  }
+
+  .cursor--large {
+    width: 48px;
+    height: 48px;
+    background: transparent;
+    border: 1px solid var(--magenta);
+    mix-blend-mode: normal;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(245,240,232,0.95);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(8px);
+  }
+
+  .header__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo__dot {
+    width: 8px;
+    height: 8px;
+    background: var(--magenta);
+    border-radius: 50%;
+  }
+
+  nav { display: flex; gap: 2.5rem; }
+
+  nav a {
+    font-family: 'Syne Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--magenta); }
+
+  .header__btn {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--cream);
+    background: var(--black);
+    padding: 0.65rem 1.5rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .header__btn:hover { background: var(--magenta); }
+
+  /* ── HERO ── */
+  .hero {
+    padding-top: 68px;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero__tape {
+    background: var(--magenta);
+    padding: 0.6rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .hero__tape-text {
+    font-family: 'Syne Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: white;
+  }
+
+  .hero__main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero__left {
+    padding: 5rem 3rem 5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid var(--line);
+  }
+
+  .hero__title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 6vw, 7.5rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+  }
+
+  .hero__title .accent { color: var(--magenta); }
+  .hero__title .outlined {
+    -webkit-text-stroke: 2px var(--black);
+    color: transparent;
+  }
+
+  .hero__bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--line);
+    margin-top: 3rem;
+  }
+
+  .hero__lead {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-soft);
+    grid-column: span 2;
+  }
+
+  .hero__cta-wrap { display: flex; gap: 1rem; align-items: center; }
+
+  .btn-main {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--cream);
+    background: var(--magenta);
+    padding: 1rem 2.2rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+  }
+
+  .btn-main:hover { background: var(--magenta2); }
+
+  .btn-outline {
+    font-family: 'Syne Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    border-bottom: 1px solid var(--black);
+    padding-bottom: 2px;
+  }
+
+  .btn-outline:hover { color: var(--magenta); border-bottom-color: var(--magenta); }
+
+  .hero__right {
+    background: var(--black);
+    padding: 5rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--cream);
+  }
+
+  .hero__marquee-title {
+    font-family: 'Syne Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--magenta);
+    margin-bottom: 3rem;
+  }
+
+  .results-list { list-style: none; }
+
+  .result-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(245,240,232,0.08);
+    gap: 1rem;
+  }
+
+  .result-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--lime);
+    flex-shrink: 0;
+    width: 100px;
+  }
+
+  .result-body {}
+
+  .result-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .result-desc {
+    font-size: 0.82rem;
+    color: rgba(245,240,232,0.5);
+    line-height: 1.5;
+  }
+
+  /* ── SERVICES ── */
+  .services {
+    padding: 8rem 0;
+    background: var(--black);
+    color: var(--cream);
+  }
+
+  .services .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+  }
+
+  .s-eyebrow {
+    font-family: 'Syne Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--magenta);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .s-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--magenta); }
+
+  .s-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 6rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    margin-bottom: 5rem;
+  }
+
+  .s-title span { color: var(--lime); }
+
+  .svc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border: 1px solid rgba(245,240,232,0.1);
+  }
+
+  .svc-item {
+    padding: 3rem;
+    border-right: 1px solid rgba(245,240,232,0.08);
+    border-bottom: 1px solid rgba(245,240,232,0.08);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .svc-item:nth-child(even) { border-right: none; }
+  .svc-item:nth-child(3), .svc-item:nth-child(4) { border-bottom: none; }
+  .svc-item:hover { background: rgba(232,0,90,0.05); }
+
+  .svc-num {
+    font-family: 'Syne Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--magenta);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .svc-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.05;
+  }
+
+  .svc-desc {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: rgba(245,240,232,0.55);
+    margin-bottom: 2rem;
+  }
+
+  .svc-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+  .svc-tag {
+    font-family: 'Syne Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid rgba(198,241,53,0.3);
+    color: var(--lime);
+    padding: 0.25rem 0.65rem;
+  }
+
+  /* ── PROCESS ── */
+  .process {
+    padding: 8rem 0;
+    background: var(--cream);
+  }
+
+  .process .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+  }
+
+  .process__header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    margin-bottom: 5rem;
+  }
+
+  .process__header h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 5rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+  }
+
+  .process__header h2 span { color: var(--magenta); }
+
+  .process__header p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--text-soft);
+  }
+
+  .steps-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 2px solid var(--black);
+  }
+
+  .p-step {
+    padding: 2.5rem 2rem 2.5rem 0;
+    border-right: 1px solid var(--line);
+    padding-right: 2rem;
+  }
+
+  .p-step:last-child { border-right: none; }
+  .p-step:not(:first-child) { padding-left: 2rem; }
+
+  .p-step__num {
+    font-family: 'Syne', sans-serif;
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--magenta);
+    opacity: 0.15;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .p-step__name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .p-step__desc {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--text-soft);
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 8rem 0;
+    background: var(--purple);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact::before {
+    content: 'HABLEMOS';
+    position: absolute;
+    bottom: -3rem;
+    left: -1rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 20vw;
+    font-weight: 800;
+    color: rgba(198,241,53,0.04);
+    line-height: 1;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .contact .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .contact__left h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 5rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact__left h2 span { color: var(--lime); }
+
+  .contact__left p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(245,240,232,0.6);
+    margin-bottom: 2.5rem;
+  }
+
+  .c-info { list-style: none; }
+
+  .c-info li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(245,240,232,0.1);
+  }
+
+  .c-info__label {
+    font-family: 'Syne Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--lime);
+    min-width: 70px;
+  }
+
+  .c-info__val { font-size: 0.92rem; }
+
+  .contact__form-wrap {
+    background: var(--cream);
+    color: var(--black);
+    padding: 3rem;
+  }
+
+  .contact__form-wrap h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact__form-wrap p {
+    font-size: 0.82rem;
+    color: var(--text-soft);
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .fg { margin-bottom: 1rem; }
+
+  .fg label {
+    display: block;
+    font-family: 'Syne Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin-bottom: 0.4rem;
+  }
+
+  .fg input, .fg select, .fg textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--line);
+    padding: 0.65rem 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    color: var(--black);
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .fg select option { background: var(--cream); }
+  .fg input:focus, .fg select:focus, .fg textarea:focus { border-bottom-color: var(--magenta); }
+  .fg textarea { min-height: 90px; resize: none; }
+
+  .fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .btn-form {
+    width: 100%;
+    background: var(--magenta);
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.2s;
+  }
+
+  .btn-form:hover { background: var(--magenta2); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    padding: 2.5rem 0;
+  }
+
+  .footer__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer__logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .footer__logo::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--magenta);
+    border-radius: 50%;
+  }
+
+  .footer__copy {
+    font-family: 'Syne Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    color: rgba(245,240,232,0.3);
+  }
+
+  .footer__links { display: flex; gap: 2rem; }
+
+  .footer__links a {
+    font-family: 'Syne Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer__links a:hover { color: var(--magenta); }
+
+  /* ── ANIMS ── */
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero__title { animation: rise 0.7s ease both 0.1s; }
+  .hero__lead { animation: rise 0.7s ease both 0.3s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero__main { grid-template-columns: 1fr; }
+    .hero__right { padding: 3rem 2.5rem; }
+    .hero__bottom { grid-template-columns: 1fr; }
+    .hero__lead { grid-column: 1; }
+    nav { display: none; }
+    .svc-grid { grid-template-columns: 1fr; }
+    .svc-item:nth-child(even) { border-right: none; }
+    .svc-item:nth-child(3) { border-bottom: 1px solid rgba(245,240,232,0.08); }
+    .svc-item:nth-child(4) { border-bottom: none; }
+    .steps-row { grid-template-columns: 1fr 1fr; }
+    .p-step:nth-child(2) { border-right: none; }
+    .p-step:nth-child(4) { border-right: none; }
+    .process__header { grid-template-columns: 1fr; gap: 1.5rem; }
+    .contact__grid { grid-template-columns: 1fr; gap: 3rem; }
+    .footer__inner { flex-direction: column; gap: 1rem; text-align: center; }
+    .footer__links { justify-content: center; }
+    body { cursor: auto; }
+    .cursor { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .steps-row { grid-template-columns: 1fr; }
+    .p-step { border-right: none; border-bottom: 1px solid var(--line); }
+    .fg-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="header__inner">
+    <div class="logo">
+      <div class="logo__dot"></div>
+      Núcleo Studio
+    </div>
+    <nav>
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a href="#contacto" class="header__btn">Hablar con nosotros</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__tape">
+    <span class="hero__tape-text">Agencia de marketing digital · Santiago, Chile</span>
+    <span class="hero__tape-text">Resultados medibles · No promesas</span>
+    <span class="hero__tape-text">contacto@nucleostudio.cl</span>
+  </div>
+  <div class="hero__main">
+    <div class="hero__left">
+      <h1 class="hero__title">
+        <span class="outlined">MARCA</span><br>
+        QUE<br>
+        <span class="accent">VENDE.</span>
+      </h1>
+      <div>
+        <p class="hero__lead" style="margin-bottom:1.5rem">Creamos estrategias de marketing que generan demanda real para empresas chilenas. Desde el posicionamiento hasta la conversión.</p>
+        <div class="hero__cta-wrap">
+          <a href="#contacto" class="btn-main">Empezar ahora</a>
+          <a href="#servicios" class="btn-outline">Ver servicios →</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero__right">
+      <p class="hero__marquee-title">Resultados reales — clientes activos</p>
+      <ul class="results-list">
+        <li class="result-item">
+          <span class="result-num">+340%</span>
+          <div class="result-body">
+            <div class="result-name">Tráfico orgánico</div>
+            <div class="result-desc">Empresa retail, Santiago — 8 meses</div>
+          </div>
+        </li>
+        <li class="result-item">
+          <span class="result-num">$180M</span>
+          <div class="result-body">
+            <div class="result-name">Ventas generadas vía digital</div>
+            <div class="result-desc">PyME B2C, Concepción — Q1 2025</div>
+          </div>
+        </li>
+        <li class="result-item">
+          <span class="result-num">2.8×</span>
+          <div class="result-body">
+            <div class="result-name">ROAS campañas pagas</div>
+            <div class="result-desc">E-commerce moda, promedio 2025</div>
+          </div>
+        </li>
+        <li class="result-item">
+          <span class="result-num">-62%</span>
+          <div class="result-body">
+            <div class="result-name">Costo por lead</div>
+            <div class="result-desc">Empresa servicios, Valparaíso — 6 meses</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="servicios">
+  <div class="container">
+    <div class="s-eyebrow">Servicios</div>
+    <h2 class="s-title">LO QUE<br><span>HACEMOS</span></h2>
+    <div class="svc-grid">
+      <div class="svc-item">
+        <span class="svc-num">01 / Estrategia</span>
+        <h3 class="svc-name">Marketing<br>Estratégico</h3>
+        <p class="svc-desc">Diagnóstico de marca, definición de audiencias y plan de crecimiento a 12 meses. El punto de partida antes de gastar un peso.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Branding</span>
+          <span class="svc-tag">Posicionamiento</span>
+          <span class="svc-tag">Buyer persona</span>
+        </div>
+      </div>
+      <div class="svc-item">
+        <span class="svc-num">02 / Pauta</span>
+        <h3 class="svc-name">Publicidad<br>Digital</h3>
+        <p class="svc-desc">Campañas en Google Ads, Meta Ads y LinkedIn. Optimización continua con foco en ROAS positivo desde el primer mes.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Google Ads</span>
+          <span class="svc-tag">Meta Ads</span>
+          <span class="svc-tag">Retargeting</span>
+        </div>
+      </div>
+      <div class="svc-item">
+        <span class="svc-num">03 / Contenido</span>
+        <h3 class="svc-name">Redes &<br>Contenido</h3>
+        <p class="svc-desc">Gestión de redes sociales, producción de contenido y calendario editorial. Consistencia que construye comunidad y genera ventas.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Instagram</span>
+          <span class="svc-tag">LinkedIn</span>
+          <span class="svc-tag">TikTok</span>
+        </div>
+      </div>
+      <div class="svc-item">
+        <span class="svc-num">04 / SEO & Leads</span>
+        <h3 class="svc-name">SEO &<br>Generación de Leads</h3>
+        <p class="svc-desc">Posicionamiento orgánico en Google, email marketing y embudos de conversión que convierten visitas en clientes.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">SEO técnico</span>
+          <span class="svc-tag">Email marketing</span>
+          <span class="svc-tag">Landing pages</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="proceso">
+  <div class="container">
+    <div class="process__header">
+      <h2>Cómo<br><span>trabajamos</span></h2>
+      <p>Un proceso claro, sin sorpresas. Usted sabe qué hacemos, cuándo y por qué en cada etapa.</p>
+    </div>
+    <div class="steps-row">
+      <div class="p-step">
+        <div class="p-step__num">01</div>
+        <h3 class="p-step__name">Diagnóstico</h3>
+        <p class="p-step__desc">Auditamos su presencia digital, marca y competencia. Definimos objetivos con métricas reales.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-step__num">02</div>
+        <h3 class="p-step__name">Estrategia</h3>
+        <p class="p-step__desc">Diseñamos el plan de acción: qué canales, qué mensajes, qué presupuesto y qué timelines.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-step__num">03</div>
+        <h3 class="p-step__name">Ejecución</h3>
+        <p class="p-step__desc">Activamos campañas, publicamos contenido y gestionamos la pauta con optimización semanal.</p>
+      </div>
+      <div class="p-step">
+        <div class="p-step__num">04</div>
+        <h3 class="p-step__name">Reporte</h3>
+        <p class="p-step__desc">Informe mensual con KPIs reales. Reunión de revisión y ajuste de estrategia según resultados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="container">
+    <div class="contact__grid">
+      <div class="contact__left">
+        <h2>¿Listo para<br><span>crecer?</span></h2>
+        <p>Cuéntenos su situación actual y sus objetivos. Sin compromiso. La primera reunión es de diagnóstico.</p>
+        <ul class="c-info">
+          <li>
+            <span class="c-info__label">Teléfono</span>
+            <span class="c-info__val">+56 9 2345 6789</span>
+          </li>
+          <li>
+            <span class="c-info__label">Email</span>
+            <span class="c-info__val">contacto@nucleostudio.cl</span>
+          </li>
+          <li>
+            <span class="c-info__label">Ubicación</span>
+            <span class="c-info__val">Las Condes, Santiago</span>
+          </li>
+          <li>
+            <span class="c-info__label">Atención</span>
+            <span class="c-info__val">Lun–Vie 9:00–18:00</span>
+          </li>
+        </ul>
+      </div>
+      <div class="contact__form-wrap">
+        <h3>Empecemos a trabajar</h3>
+        <p>Respondemos en menos de 24 horas hábiles con un diagnóstico inicial.</p>
+        <form onsubmit="handleSubmit(event)">
+          <div class="fg-row">
+            <div class="fg">
+              <label>Nombre</label>
+              <input type="text" placeholder="Valentina Torres" required>
+            </div>
+            <div class="fg">
+              <label>Empresa</label>
+              <input type="text" placeholder="Mi empresa">
+            </div>
+          </div>
+          <div class="fg-row">
+            <div class="fg">
+              <label>Email</label>
+              <input type="email" placeholder="valentina@empresa.cl" required>
+            </div>
+            <div class="fg">
+              <label>Teléfono</label>
+              <input type="tel" placeholder="+56 9 XXXX XXXX">
+            </div>
+          </div>
+          <div class="fg">
+            <label>¿Qué necesita?</label>
+            <select>
+              <option>Estrategia de marketing</option>
+              <option>Publicidad digital</option>
+              <option>Redes sociales</option>
+              <option>SEO</option>
+              <option>Todo lo anterior</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>¿Cuál es su principal desafío hoy?</label>
+            <textarea placeholder="Ej: No tenemos leads, no sabemos cómo llegar a clientes nuevos..."></textarea>
+          </div>
+          <button type="submit" class="btn-form">Enviar mensaje →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer__inner">
+    <div class="footer__logo">Núcleo Studio</div>
+    <p class="footer__copy">© 2025 Núcleo Studio SpA · Santiago, Chile</p>
+    <div class="footer__links">
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', (e) => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('cursor--large'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('cursor--large'));
+});
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-form');
+  btn.textContent = '¡Mensaje enviado! ✓';
+  btn.style.background = '#1a7a1a';
+  setTimeout(() => {
+    btn.textContent = 'Enviar mensaje →';
+    btn.style.background = '';
+    e.target.reset();
+  }, 3000);
+}
+</script>
+</body>
+</html>
