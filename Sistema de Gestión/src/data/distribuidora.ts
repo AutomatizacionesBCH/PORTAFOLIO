@@ -384,14 +384,79 @@ export const revenueData = [
 
 export const kpis = {
   ingresos_mes: 72600000,
-  pedidos_activos: 12,
-  leads_calificados: 32,
-  tasa_cierre: 58,
-  nps: 68,
+  pedidos_mes: 38,
+  en_transito: 12,
+  completados_mes: 22,
+  devoluciones: 2,
+  monto_despachado: 68400000,
+  cobertura_stock: 87,
   margen_mes: 14500000,
   rotacion_inventario: 4.2,
-  pedidos_mes: 38,
+  nps: 68,
 }
+
+export interface Proveedor {
+  id: string; nombre: string; rut: string; contacto: string; email: string;
+  telefono: string; categoria: string; condicion_pago: string;
+  tiempo_entrega_dias: number; calificacion: number;
+  estado: 'activo' | 'inactivo' | 'evaluacion';
+  compras_anuales: number; ciudad: string;
+}
+
+export const proveedores: Proveedor[] = [
+  { id: 'pv01', nombre: 'Ferrinox Chile S.A.', rut: '76.234.890-1', contacto: 'Héctor Barra', email: 'h.barra@ferrinox.cl', telefono: '+56 2 2890 4400', categoria: 'Acero y Metales', condicion_pago: '30 días', tiempo_entrega_dias: 5, calificacion: 4.8, estado: 'activo', compras_anuales: 186000000, ciudad: 'Santiago' },
+  { id: 'pv02', nombre: 'Proveedora Nacional de Hormigón', rut: '78.456.123-4', contacto: 'Sandra Ortiz', email: 's.ortiz@pronahorm.cl', telefono: '+56 2 2760 8800', categoria: 'Hormigón y Cemento', condicion_pago: '15 días', tiempo_entrega_dias: 3, calificacion: 4.2, estado: 'activo', compras_anuales: 143000000, ciudad: 'Santiago' },
+  { id: 'pv03', nombre: 'Impertek Ltda.', rut: '77.890.345-6', contacto: 'Carlos Figueroa', email: 'c.figueroa@impertek.cl', telefono: '+56 2 2640 3300', categoria: 'Impermeabilizantes', condicion_pago: '45 días', tiempo_entrega_dias: 7, calificacion: 4.5, estado: 'activo', compras_anuales: 98000000, ciudad: 'Pudahuel' },
+  { id: 'pv04', nombre: 'Electrosuministros del Norte', rut: '79.012.678-9', contacto: 'Verónica Rojas', email: 'v.rojas@electrosumin.cl', telefono: '+56 55 2340000', categoria: 'Materiales Eléctricos', condicion_pago: '30 días', tiempo_entrega_dias: 8, calificacion: 4.0, estado: 'activo', compras_anuales: 76000000, ciudad: 'Antofagasta' },
+  { id: 'pv05', nombre: 'MaderaCom SpA', rut: '76.567.234-7', contacto: 'Pablo Muñoz', email: 'p.munoz@maderacom.cl', telefono: '+56 41 2450000', categoria: 'Madera y Derivados', condicion_pago: '30 días', tiempo_entrega_dias: 6, calificacion: 4.6, estado: 'activo', compras_anuales: 112000000, ciudad: 'Concepción' },
+  { id: 'pv06', nombre: 'Pinturas y Químicos del Sur', rut: '77.123.456-8', contacto: 'Lorena Castillo', email: 'l.castillo@pintquimsur.cl', telefono: '+56 41 2560000', categoria: 'Pinturas y Recubrimientos', condicion_pago: '30 días', tiempo_entrega_dias: 5, calificacion: 4.3, estado: 'activo', compras_anuales: 64000000, ciudad: 'Talcahuano' },
+  { id: 'pv07', nombre: 'Herramientas Industriales Cruz', rut: '78.234.567-9', contacto: 'Roberto Cruz', email: 'r.cruz@herramcruz.cl', telefono: '+56 2 2720 5500', categoria: 'Herramientas', condicion_pago: '60 días', tiempo_entrega_dias: 4, calificacion: 4.7, estado: 'activo', compras_anuales: 88000000, ciudad: 'Santiago' },
+  { id: 'pv08', nombre: 'Aislantes Sur S.A.', rut: '79.345.678-0', contacto: 'Carmen Vidal', email: 'c.vidal@aislantsur.cl', telefono: '+56 41 2670000', categoria: 'Aislantes Térmicos', condicion_pago: '30 días', tiempo_entrega_dias: 9, calificacion: 3.8, estado: 'activo', compras_anuales: 52000000, ciudad: 'Concepción' },
+  { id: 'pv09', nombre: 'Tubería Chilena Ltda.', rut: '+56.678.789-1', contacto: 'Arturo Soto', email: 'a.soto@tuberachile.cl', telefono: '+56 2 2830 7700', categoria: 'Tuberías y Fitting', condicion_pago: '45 días', tiempo_entrega_dias: 6, calificacion: 4.4, estado: 'activo', compras_anuales: 95000000, ciudad: 'Santiago' },
+  { id: 'pv10', nombre: 'Adhesivos y Sellantes Rápidos', rut: '77.789.012-2', contacto: 'Marcela Torres', email: 'm.torres@adhesivosrap.cl', telefono: '+56 2 2780 9900', categoria: 'Adhesivos y Sellantes', condicion_pago: '30 días', tiempo_entrega_dias: 3, calificacion: 4.1, estado: 'activo', compras_anuales: 38000000, ciudad: 'Santiago' },
+  { id: 'pv11', nombre: 'Distribuidora Metálica Patagonia', rut: '76.012.345-3', contacto: 'Felipe Morales', email: 'f.morales@metalpatagonia.cl', telefono: '+56 65 2340000', categoria: 'Acero y Metales', condicion_pago: '45 días', tiempo_entrega_dias: 12, calificacion: 3.9, estado: 'activo', compras_anuales: 61000000, ciudad: 'Puerto Montt' },
+  { id: 'pv12', nombre: 'Quimiser Industrias', rut: '78.345.678-4', contacto: 'Gloria Espinoza', email: 'g.espinoza@quimiser.cl', telefono: '+56 2 2700 1100', categoria: 'Químicos Industriales', condicion_pago: '30 días', tiempo_entrega_dias: 5, calificacion: 4.2, estado: 'evaluacion', compras_anuales: 28000000, ciudad: 'Pudahuel' },
+  { id: 'pv13', nombre: 'Seguridad Industrial SIS Ltda.', rut: '77.456.789-5', contacto: 'Diego Ramírez', email: 'd.ramirez@sisltda.cl', telefono: '+56 2 2650 2200', categoria: 'Seguridad Industrial', condicion_pago: '30 días', tiempo_entrega_dias: 4, calificacion: 4.6, estado: 'activo', compras_anuales: 44000000, ciudad: 'Santiago' },
+  { id: 'pv14', nombre: 'Construcciones Modulares del Norte', rut: '79.567.890-6', contacto: 'Jacqueline Fuentes', email: 'j.fuentes@construcmodul.cl', telefono: '+56 55 2450000', categoria: 'Estructuras Modulares', condicion_pago: '60 días', tiempo_entrega_dias: 14, calificacion: 3.7, estado: 'inactivo', compras_anuales: 0, ciudad: 'Iquique' },
+  { id: 'pv15', nombre: 'Materiales Verdes Chile SpA', rut: '76.678.901-7', contacto: 'Ana Contreras', email: 'a.contreras@matverdes.cl', telefono: '+56 2 2810 3300', categoria: 'Materiales Sustentables', condicion_pago: '30 días', tiempo_entrega_dias: 7, calificacion: 4.4, estado: 'evaluacion', compras_anuales: 12000000, ciudad: 'Santiago' },
+]
+
+export interface Despacho {
+  id: string; pedido_id: string; empresa: string; ciudad_destino: string;
+  fecha_despacho: string; fecha_estimada: string; fecha_entrega?: string;
+  transportista: string; guia: string; bultos: number; peso_kg: number;
+  estado: 'en_preparacion' | 'despachado' | 'en_transito' | 'entregado' | 'devolucion';
+  monto: number;
+}
+
+export const despachos: Despacho[] = [
+  { id: 'd001', pedido_id: 'ped-089', empresa: 'Palma Distribuciones', ciudad_destino: 'Santiago', fecha_despacho: '2026-04-25', fecha_estimada: '2026-04-26', fecha_entrega: '2026-04-26', transportista: 'TransChile', guia: 'TC-88421', bultos: 24, peso_kg: 1840, estado: 'entregado', monto: 4800000 },
+  { id: 'd002', pedido_id: 'ped-090', empresa: 'Salinas & Cia.', ciudad_destino: 'Santiago', fecha_despacho: '2026-04-24', fecha_estimada: '2026-04-25', fecha_entrega: '2026-04-25', transportista: 'Correos Express', guia: 'CE-44211', bultos: 18, peso_kg: 1200, estado: 'entregado', monto: 3600000 },
+  { id: 'd003', pedido_id: 'ped-091', empresa: 'Construcciones del Sur', ciudad_destino: 'Concepción', fecha_despacho: '2026-04-24', fecha_estimada: '2026-04-27', transportista: 'TransCargo Sur', guia: 'TCS-11244', bultos: 32, peso_kg: 2600, estado: 'en_transito', monto: 5200000 },
+  { id: 'd004', pedido_id: 'ped-092', empresa: 'Ferretería Central', ciudad_destino: 'Santiago', fecha_despacho: '2026-04-23', fecha_estimada: '2026-04-24', fecha_entrega: '2026-04-24', transportista: 'TransChile', guia: 'TC-88390', bultos: 15, peso_kg: 980, estado: 'entregado', monto: 2100000 },
+  { id: 'd005', pedido_id: 'ped-093', empresa: 'Abastecedora Norte', ciudad_destino: 'Iquique', fecha_despacho: '2026-04-22', fecha_estimada: '2026-04-26', transportista: 'NorCargo', guia: 'NC-5521', bultos: 40, peso_kg: 3200, estado: 'en_transito', monto: 7400000 },
+  { id: 'd006', pedido_id: 'ped-094', empresa: 'Vidal Suministros', ciudad_destino: 'Santiago', fecha_despacho: '2026-04-22', fecha_estimada: '2026-04-23', fecha_entrega: '2026-04-23', transportista: 'Correos Express', guia: 'CE-44188', bultos: 22, peso_kg: 1540, estado: 'entregado', monto: 3900000 },
+  { id: 'd007', pedido_id: 'ped-095', empresa: 'Torres Logística', ciudad_destino: 'Santiago', fecha_despacho: '2026-04-22', fecha_estimada: '2026-04-23', fecha_entrega: '2026-04-23', transportista: 'TransChile', guia: 'TC-88376', bultos: 28, peso_kg: 2100, estado: 'entregado', monto: 4200000 },
+  { id: 'd008', pedido_id: 'ped-096', empresa: 'Industrial Soto Hnos.', ciudad_destino: 'Antofagasta', fecha_despacho: '2026-04-21', fecha_estimada: '2026-04-25', transportista: 'NorCargo', guia: 'NC-5514', bultos: 35, peso_kg: 2800, estado: 'en_transito', monto: 6100000 },
+  { id: 'd009', pedido_id: 'ped-097', empresa: 'Suministros León Ltda.', ciudad_destino: 'Santiago', fecha_despacho: '2026-04-21', fecha_estimada: '2026-04-22', fecha_entrega: '2026-04-22', transportista: 'Correos Express', guia: 'CE-44165', bultos: 20, peso_kg: 1380, estado: 'entregado', monto: 3100000 },
+  { id: 'd010', pedido_id: 'ped-098', empresa: 'Castro Logística SpA', ciudad_destino: 'Valparaíso', fecha_despacho: '2026-04-20', fecha_estimada: '2026-04-22', fecha_entrega: '2026-04-22', transportista: 'TransChile', guia: 'TC-88354', bultos: 26, peso_kg: 1960, estado: 'entregado', monto: 4500000 },
+  { id: 'd011', pedido_id: 'ped-099', empresa: 'Núñez Estructuras SpA', ciudad_destino: 'Calama', fecha_despacho: '2026-04-19', fecha_estimada: '2026-04-24', transportista: 'NorCargo', guia: 'NC-5498', bultos: 50, peso_kg: 4200, estado: 'en_transito', monto: 9800000 },
+  { id: 'd012', pedido_id: 'ped-100', empresa: 'Espinoza Materiales', ciudad_destino: 'Coquimbo', fecha_despacho: '2026-04-18', fecha_estimada: '2026-04-21', fecha_entrega: '2026-04-21', transportista: 'TransChile', guia: 'TC-88342', bultos: 14, peso_kg: 960, estado: 'entregado', monto: 1800000 },
+  { id: 'd013', pedido_id: 'ped-101', empresa: 'Pizarro Distribuciones', ciudad_destino: 'Arica', fecha_despacho: '2026-04-17', fecha_estimada: '2026-04-23', transportista: 'NorCargo', guia: 'NC-5486', bultos: 44, peso_kg: 3600, estado: 'en_transito', monto: 8200000 },
+  { id: 'd014', pedido_id: 'ped-082', empresa: 'Vargas Suministros', ciudad_destino: 'Arica', fecha_despacho: '2026-04-10', fecha_estimada: '2026-04-16', fecha_entrega: '2026-04-17', transportista: 'NorCargo', guia: 'NC-5441', bultos: 38, peso_kg: 3100, estado: 'entregado', monto: 6800000 },
+  { id: 'd015', pedido_id: 'ped-083', empresa: 'Alvarado Construcciones', ciudad_destino: 'Concepción', fecha_despacho: '2026-04-09', fecha_estimada: '2026-04-12', fecha_entrega: '2026-04-13', transportista: 'TransCargo Sur', guia: 'TCS-11211', bultos: 29, peso_kg: 2200, estado: 'entregado', monto: 4700000 },
+  { id: 'd016', pedido_id: 'ped-084', empresa: 'Gutiérrez Proveedores', ciudad_destino: 'Osorno', fecha_despacho: '2026-04-08', fecha_estimada: '2026-04-11', fecha_entrega: '2026-04-10', transportista: 'TransCargo Sur', guia: 'TCS-11198', bultos: 16, peso_kg: 1120, estado: 'devolucion', monto: 2400000 },
+  { id: 'd017', pedido_id: 'ped-085', empresa: 'Lagos Ferretería', ciudad_destino: 'Rancagua', fecha_despacho: '2026-04-08', fecha_estimada: '2026-04-09', fecha_entrega: '2026-04-09', transportista: 'Correos Express', guia: 'CE-44044', bultos: 19, peso_kg: 1340, estado: 'entregado', monto: 2900000 },
+  { id: 'd018', pedido_id: 'ped-086', empresa: 'Reyes Logística', ciudad_destino: 'Santiago', fecha_despacho: '2026-04-07', fecha_estimada: '2026-04-08', fecha_entrega: '2026-04-08', transportista: 'TransChile', guia: 'TC-88289', bultos: 21, peso_kg: 1580, estado: 'entregado', monto: 3300000 },
+  { id: 'd019', pedido_id: 'ped-087', empresa: 'Molina Distribuciones', ciudad_destino: 'Temuco', fecha_despacho: '2026-04-06', fecha_estimada: '2026-04-09', fecha_entrega: '2026-04-09', transportista: 'TransCargo Sur', guia: 'TCS-11186', bultos: 33, peso_kg: 2640, estado: 'entregado', monto: 5600000 },
+  { id: 'd020', pedido_id: 'ped-088', empresa: 'Campos & Hijos Ltda.', ciudad_destino: 'Concepción', fecha_despacho: '2026-04-05', fecha_estimada: '2026-04-08', fecha_entrega: '2026-04-08', transportista: 'TransCargo Sur', guia: 'TCS-11173', bultos: 25, peso_kg: 1900, estado: 'entregado', monto: 4100000 },
+  // Preparación
+  { id: 'd021', pedido_id: 'ped-102', empresa: 'Ferretería Central', ciudad_destino: 'Santiago', fecha_despacho: '2026-04-28', fecha_estimada: '2026-04-29', transportista: 'TransChile', guia: 'TC-88442', bultos: 17, peso_kg: 1100, estado: 'en_preparacion', monto: 2600000 },
+  { id: 'd022', pedido_id: 'ped-103', empresa: 'Palma Distribuciones', ciudad_destino: 'Santiago', fecha_despacho: '2026-04-28', fecha_estimada: '2026-04-29', transportista: 'Correos Express', guia: 'CE-44233', bultos: 23, peso_kg: 1680, estado: 'en_preparacion', monto: 4400000 },
+  { id: 'd023', pedido_id: 'ped-104', empresa: 'Acuña Distribuciones', ciudad_destino: 'Valparaíso', fecha_despacho: '2026-04-29', fecha_estimada: '2026-04-30', transportista: 'TransChile', guia: 'TC-88451', bultos: 30, peso_kg: 2300, estado: 'en_preparacion', monto: 5100000 },
+  // Devolución
+  { id: 'd024', pedido_id: 'ped-078', empresa: 'Castillo Materiales', ciudad_destino: 'Temuco', fecha_despacho: '2026-03-28', fecha_estimada: '2026-04-01', fecha_entrega: '2026-04-01', transportista: 'TransCargo Sur', guia: 'TCS-11122', bultos: 8, peso_kg: 560, estado: 'devolucion', monto: 980000 },
+]
 
 export const agentResponses = {
   dashboard: `**Análisis de operación — Abril 2026**

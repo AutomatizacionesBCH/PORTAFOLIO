@@ -11,9 +11,9 @@ import * as distribuidoraData from '@/data/distribuidora'
 import * as pymeData from '@/data/pyme'
 
 const TOOLTIP_STYLE = {
-  contentStyle: { background: '#1B2A4A', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 4 },
-  labelStyle: { color: '#8BA8C4', fontSize: 11 },
-  itemStyle: { color: '#C7CEDA', fontSize: 12 },
+  contentStyle: { background: '#FFFFFF', border: '1px solid #C8D8E8', borderRadius: 4 },
+  labelStyle: { color: '#3D5A78', fontSize: 11 },
+  itemStyle: { color: '#244565', fontSize: 12 },
 }
 
 function fmt(n: number) {
@@ -91,17 +91,17 @@ export default function MarketingPage() {
         <div className="p-4 h-72">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={md} margin={{ top: 4, right: 4, left: 0, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
-              <XAxis dataKey="mes" tick={{ fill: '#8BA8C4', fontSize: 10 }} axisLine={false} tickLine={false} />
+              <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.06)" />
+              <XAxis dataKey="mes" tick={{ fill: '#5A7A96', fontSize: 10 }} axisLine={false} tickLine={false} />
               <YAxis
                 tickFormatter={v => `$${(v / 1000).toFixed(0)}K`}
-                tick={{ fill: '#8BA8C4', fontSize: 10 }} axisLine={false} tickLine={false} width={52}
+                tick={{ fill: '#5A7A96', fontSize: 10 }} axisLine={false} tickLine={false} width={52}
               />
               <Tooltip
                 formatter={(v) => [`$${((v as number) / 1000).toFixed(0)}K`]}
                 {...TOOLTIP_STYLE}
               />
-              <Legend iconType="circle" iconSize={8} wrapperStyle={{ fontSize: 11, color: '#8BA8C4' }} />
+              <Legend iconType="circle" iconSize={8} wrapperStyle={{ fontSize: 11, color: '#5A7A96' }} />
               {channelKeys.map((k, i) => (
                 <Bar key={k} dataKey={k} name={CHANNEL_LABELS[k] ?? k} fill={colors[i]} radius={[2, 2, 0, 0]} stackId="a" />
               ))}

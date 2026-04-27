@@ -3,10 +3,9 @@
 import { useState, useMemo } from 'react'
 import { useDemoContext } from '@/context/DemoContext'
 import { PageShell } from '@/components/layout/PageShell'
-import { Search, Briefcase, ShoppingCart, Store } from 'lucide-react'
+import { Search, Briefcase, ShoppingCart, Wrench } from 'lucide-react'
 import * as serviciosData from '@/data/servicios'
 import * as distribuidoraData from '@/data/distribuidora'
-import * as pymeData from '@/data/pyme'
 
 function fmt(n: number) {
   if (n >= 1_000_000) return `$${(n / 1_000_000).toFixed(1)}M`
@@ -68,15 +67,10 @@ export default function OperacionesPage() {
         Icon: ShoppingCart,
       }
     }
-    const data = pymeData.ventas as pymeData.Venta[]
     return {
-      rows: data.map(v => ({
-        id: v.id, titulo: v.cliente, secundario: v.canal_venta,
-        fecha: v.fecha, monto: v.monto, estado: v.estado,
-        extra: v.vendedor,
-      })) as Row[],
-      estados: ['completada', 'pendiente', 'cancelada', 'devolucion'],
-      Icon: Store,
+      rows: [] as Row[],
+      estados: [] as string[],
+      Icon: Wrench,
     }
   }, [rubro])
 

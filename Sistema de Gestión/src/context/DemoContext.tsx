@@ -2,8 +2,9 @@
 
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react'
 import {
-  LayoutDashboard, Users, TrendingUp, Megaphone,
-  Briefcase, ShoppingCart, Store, Package, Wallet, FileText,
+  LayoutDashboard, Users, Megaphone,
+  Briefcase, ShoppingCart, Package, Wallet, FileText,
+  Building2, Truck, Wrench, Calendar,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -16,22 +17,13 @@ export interface RubroConfig {
   label: string
   empresa: string
   rubro: string
-  operacionLabel: string   // "Proyectos" | "Pedidos" | "Ventas"
+  operacionLabel: string
   operacionHref: string
-  extraLabel: string       // "Propuestas" | "Inventario" | "Caja"
+  extraLabel: string
   extraHref: string
   extraIcon: LucideIcon
   navItems: NavItem[]
 }
-
-const baseNav = (opLabel: string, opHref: string, extraLabel: string, extraHref: string, extraIcon: LucideIcon): NavItem[] => [
-  { label: 'Dashboard',   href: '/dashboard',   icon: LayoutDashboard, description: 'Resumen ejecutivo' },
-  { label: opLabel,       href: opHref,         icon: opLabel === 'Proyectos' ? Briefcase : opLabel === 'Pedidos' ? ShoppingCart : Store, description: opLabel },
-  { label: 'Clientes',    href: '/clientes',    icon: Users,    description: 'Base de clientes' },
-  { label: 'Leads',       href: '/leads',       icon: TrendingUp, description: 'Pipeline de prospectos' },
-  { label: 'Marketing',   href: '/marketing',   icon: Megaphone, description: 'Campañas y canales' },
-  { label: extraLabel,    href: extraHref,      icon: extraIcon, description: extraLabel },
-]
 
 export const rubros: RubroConfig[] = [
   {
@@ -44,7 +36,14 @@ export const rubros: RubroConfig[] = [
     extraLabel: 'Propuestas',
     extraHref: '/propuestas',
     extraIcon: FileText,
-    navItems: baseNav('Proyectos', '/operaciones', 'Propuestas', '/propuestas', FileText),
+    navItems: [
+      { label: 'Dashboard',   href: '/dashboard',   icon: LayoutDashboard },
+      { label: 'Proyectos',   href: '/operaciones', icon: Briefcase },
+      { label: 'Clientes',    href: '/clientes',    icon: Users },
+      { label: 'Leads',       href: '/leads',       icon: Megaphone },
+      { label: 'Marketing',   href: '/marketing',   icon: Megaphone },
+      { label: 'Propuestas',  href: '/propuestas',  icon: FileText },
+    ],
   },
   {
     key: 'distribuidora',
@@ -56,19 +55,32 @@ export const rubros: RubroConfig[] = [
     extraLabel: 'Inventario',
     extraHref: '/inventario',
     extraIcon: Package,
-    navItems: baseNav('Pedidos', '/operaciones', 'Inventario', '/inventario', Package),
+    navItems: [
+      { label: 'Dashboard',    href: '/dashboard',    icon: LayoutDashboard },
+      { label: 'Pedidos',      href: '/operaciones',  icon: ShoppingCart },
+      { label: 'Clientes',     href: '/clientes',     icon: Users },
+      { label: 'Inventario',   href: '/inventario',   icon: Package },
+      { label: 'Proveedores',  href: '/proveedores',  icon: Building2 },
+      { label: 'Despachos',    href: '/despachos',    icon: Truck },
+    ],
   },
   {
     key: 'pyme',
-    label: 'PyME',
-    empresa: 'Núcleo Retail',
-    rubro: 'Comercio de Equipamiento y Tecnología',
-    operacionLabel: 'Ventas',
-    operacionHref: '/operaciones',
+    label: 'PyME de Servicios',
+    empresa: 'Servicios Rápidos Ltda.',
+    rubro: 'Mantención y Reparación Industrial',
+    operacionLabel: 'Servicios',
+    operacionHref: '/servicios',
     extraLabel: 'Caja',
     extraHref: '/caja',
     extraIcon: Wallet,
-    navItems: baseNav('Ventas', '/operaciones', 'Caja', '/caja', Wallet),
+    navItems: [
+      { label: 'Dashboard',  href: '/dashboard',  icon: LayoutDashboard },
+      { label: 'Servicios',  href: '/servicios',  icon: Wrench },
+      { label: 'Clientes',   href: '/clientes',   icon: Users },
+      { label: 'Caja',       href: '/caja',       icon: Wallet },
+      { label: 'Agenda',     href: '/agenda',     icon: Calendar },
+    ],
   },
 ]
 

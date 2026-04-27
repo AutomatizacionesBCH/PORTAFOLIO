@@ -1,77 +1,72 @@
 @import "tailwindcss";
 
-/* ── BCH color overrides — remap Tailwind slate/blue to BCH palette ── */
+/* ── BCH — tema claro profesional ── */
 @theme {
-  /* Fondos */
-  --color-slate-950: #0E1A33;
-  --color-slate-900: #1B2A4A;
-  --color-slate-800: #243556;
-  --color-slate-700: #2E4268;
-  --color-slate-600: #3A5280;
-  --color-slate-500: #4E6A9A;
-  --color-slate-400: #8BA8C4;
-  --color-slate-300: #C7CEDA;
-  --color-slate-200: #DCE6F0;
-  --color-slate-100: #EEF3F8;
+  /* Fondos — escala invertida para tema claro */
+  --color-slate-950: #F4F7FA;     /* fondo de página */
+  --color-slate-900: #FFFFFF;     /* cards — blanco puro */
+  --color-slate-800: #C8D8E8;     /* bordes y hover */
+  --color-slate-700: #A8C0D4;     /* bordes fuertes */
+  --color-slate-600: #7B9BB5;     /* texto muy muted */
+  --color-slate-500: #5A7A96;     /* texto muted */
+  --color-slate-400: #3D5A78;     /* texto secundario */
+  --color-slate-300: #244565;     /* texto body */
+  --color-slate-200: #152E4A;     /* texto fuerte */
+  --color-slate-100: #0A1929;     /* texto principal — navy oscuro */
 
-  /* Acento — cyan BCH */
+  /* Acento — cyan BCH → más oscuro para legibilidad en fondo claro */
   --color-blue-700: #1B2A4A;
   --color-blue-600: #2A5298;
-  --color-blue-500: #4A9DC8;
-  --color-blue-400: #6BB7E6;
-  --color-blue-300: #8DCFF0;
+  --color-blue-500: #3A8CC0;
+  --color-blue-400: #1A7FC1;
+  --color-blue-300: #4DAEE8;
   --color-blue-200: #B8E2F8;
   --color-blue-100: #E0F3FC;
   --color-blue-50:  #F0F9FE;
 
-  /* Tokens semánticos propios */
-  --color-base:          #0E1A33;
-  --color-surface:       #1B2A4A;
-  --color-elevated:      #243556;
-  --color-border:        rgba(255,255,255,0.10);
-  --color-border-strong: rgba(255,255,255,0.20);
-  --color-accent:        #6BB7E6;
-  --color-accent-hover:  #5AADD8;
-  --color-text:          #FFFFFF;
-  --color-text-secondary:#C7CEDA;
-  --color-text-muted:    #8BA8C4;
+  /* Tokens semánticos */
+  --color-accent:        #1A7FC1;
+  --color-accent-hover:  #156FA8;
+  --color-text:          #0A1929;
+  --color-text-secondary:#3D5A78;
+  --color-text-muted:    #5A7A96;
 }
 
 :root {
-  --background: #0E1A33;
-  --foreground: #ffffff;
+  --background: #F4F7FA;
+  --foreground: #0A1929;
 }
 
 html {
-  background-color: #0E1A33;
-  color-scheme: dark;
+  background-color: #F4F7FA;
+  color-scheme: light;
 }
 
 body {
-  background-color: #0E1A33;
-  color: #ffffff;
+  background-color: #F4F7FA;
+  color: #0A1929;
   font-family: var(--font-geist-sans), Inter, system-ui, sans-serif;
 }
 
 /* Scrollbars */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(107,183,230,0.15) transparent;
+  scrollbar-color: rgba(26,127,193,0.2) transparent;
 }
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(107,183,230,0.15);
+  background: rgba(26,127,193,0.2);
   border-radius: 0;
 }
-::-webkit-scrollbar-thumb:hover { background: rgba(107,183,230,0.28); }
+::-webkit-scrollbar-thumb:hover { background: rgba(26,127,193,0.35); }
 
 .table-scroll {
   overflow-x: scroll;
   scrollbar-width: thin;
-  scrollbar-color: rgba(107,183,230,0.15) #1B2A4A;
+  scrollbar-color: rgba(26,127,193,0.2) #F4F7FA;
 }
 
 /* Focus */
-:focus-visible { outline: 2px solid #6BB7E6; outline-offset: 2px; }
-::selection { background: #6BB7E6; color: #0E1A33; }
+:focus-visible { outline: 2px solid #1A7FC1; outline-offset: 2px; }
+::selection { background: #1A7FC1; color: #FFFFFF; }

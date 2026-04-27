@@ -32,7 +32,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       {/* Main */}
       <div className="flex flex-col flex-1 overflow-hidden min-w-0">
         <Header onMenuToggle={() => setMobileOpen(v => !v)} />
-        <main className="flex-1 overflow-y-auto bg-[#0d1526]">
+        <main className="flex-1 overflow-y-auto bg-slate-950">
           <div className="p-4 sm:p-6 lg:p-8 max-w-screen-2xl">
             {children}
           </div>
