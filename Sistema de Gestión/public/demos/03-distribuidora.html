@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vértice Distribuciones — Proveedor B2B Chile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #111418;
+    --bg2: #1A1F26;
+    --bg3: #0D1014;
+    --orange: #E8580A;
+    --orange2: #FF6B1A;
+    --white: #EEF0F2;
+    --gray: #6B7280;
+    --line: rgba(232,88,10,0.2);
+    --line2: rgba(238,240,242,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(17,20,24,0.98);
+    border-bottom: 1px solid var(--line2);
+  }
+
+  .header__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .logo__mark {
+    width: 36px;
+    height: 36px;
+    background: var(--orange);
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    flex-shrink: 0;
+  }
+
+  .logo__name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .logo__name span {
+    display: block;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.5rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-top: 2px;
+  }
+
+  nav { display: flex; gap: 2rem; }
+
+  nav a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--orange); }
+
+  .header__cta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--orange);
+    padding: 0.7rem 1.8rem;
+    text-decoration: none;
+    transition: background 0.2s;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  }
+
+  .header__cta:hover { background: var(--orange2); }
+
+  /* ── HERO ── */
+  .hero {
+    padding-top: 64px;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(17,20,24,0.3) 0%, rgba(17,20,24,0.85) 60%, rgba(17,20,24,1) 100%),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 80px,
+        rgba(232,88,10,0.03) 80px,
+        rgba(232,88,10,0.03) 81px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 80px,
+        rgba(232,88,10,0.03) 80px,
+        rgba(232,88,10,0.03) 81px
+      );
+    background-color: var(--bg3);
+  }
+
+  .hero__accent {
+    position: absolute;
+    top: 20%;
+    right: 8%;
+    width: 320px;
+    height: 320px;
+    border: 1px solid var(--orange);
+    transform: rotate(15deg);
+    opacity: 0.15;
+  }
+
+  .hero__accent2 {
+    position: absolute;
+    top: 25%;
+    right: 12%;
+    width: 200px;
+    height: 200px;
+    border: 1px solid var(--orange);
+    transform: rotate(30deg);
+    opacity: 0.08;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 4rem;
+  }
+
+  .hero__eyebrow {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero__eyebrow::before {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--orange);
+  }
+
+  .hero__title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 9vw, 10rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    margin-bottom: 2rem;
+  }
+
+  .hero__title span { color: var(--orange); }
+
+  .hero__desc {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(238,240,242,0.6);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero__btns { display: flex; gap: 1rem; align-items: center; }
+
+  .btn-hero {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--orange);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    display: inline-block;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    transition: background 0.2s;
+  }
+
+  .btn-hero:hover { background: var(--orange2); }
+
+  .btn-hero2 {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(107,114,128,0.4);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+
+  .btn-hero2:hover { color: var(--orange); }
+
+  .hero__stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    border: 1px solid var(--line);
+    background: rgba(232,88,10,0.04);
+  }
+
+  .h-stat {}
+
+  .h-stat__num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.2rem;
+    color: var(--orange);
+    line-height: 1;
+    display: block;
+  }
+
+  .h-stat__label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .h-stat + .h-stat {
+    border-top: 1px solid var(--line);
+    padding-top: 1.5rem;
+  }
+
+  /* ── MARQUEE ── */
+  .marquee {
+    background: var(--orange);
+    padding: 0.7rem 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .marquee::before, .marquee::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 60px;
+    z-index: 1;
+  }
+
+  .marquee__track {
+    display: flex;
+    gap: 3rem;
+    animation: marquee 20s linear infinite;
+    width: max-content;
+  }
+
+  .marquee__item {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bg);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .marquee__item::after { content: '▸'; }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── CATEGORIES ── */
+  .categories {
+    padding: 6rem 0;
+    background: var(--bg2);
+  }
+
+  .categories .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .sec-tag {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .sec-tag::before { content: ''; width: 20px; height: 1px; background: var(--orange); }
+
+  .sec-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    line-height: 1;
+    margin-bottom: 3rem;
+  }
+
+  .sec-title span { color: var(--orange); }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line2);
+    border: 1px solid var(--line2);
+  }
+
+  .cat-card {
+    background: var(--bg);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    transition: background 0.25s;
+  }
+
+  .cat-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 0;
+    background: var(--orange);
+    transition: height 0.3s ease;
+    z-index: 0;
+    opacity: 0.06;
+  }
+
+  .cat-card:hover::after { height: 100%; }
+  .cat-card:hover { background: rgba(232,88,10,0.05); }
+
+  .cat-num {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    color: var(--orange);
+    margin-bottom: 1.5rem;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cat-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cat-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cat-desc {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--gray);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── HOW ── */
+  .how {
+    padding: 7rem 0;
+    position: relative;
+  }
+
+  .how .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .how__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+
+  .how__left {}
+
+  .step {
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--line2);
+  }
+
+  .step__num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--orange);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 60px;
+    opacity: 0.5;
+  }
+
+  .step__body {}
+
+  .step__name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .step__desc {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--gray);
+  }
+
+  .how__right {
+    background: var(--bg2);
+    border: 1px solid var(--line);
+    padding: 3rem;
+  }
+
+  .how__right-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .how__right-title span { color: var(--orange); }
+
+  .zone-list { list-style: none; }
+
+  .zone-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line2);
+  }
+
+  .zone-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .zone-time {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--orange);
+    background: rgba(232,88,10,0.1);
+    padding: 0.25rem 0.6rem;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--bg3);
+    padding: 7rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .contact .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .contact__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6rem;
+    margin-top: 3rem;
+    align-items: start;
+  }
+
+  .contact__left h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .contact__left h3 span { color: var(--orange); }
+
+  .contact__left p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--gray);
+    margin-bottom: 2rem;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--line2);
+  }
+
+  .contact-detail__icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(232,88,10,0.12);
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+
+  .contact-detail__label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+    display: block;
+    margin-bottom: 1px;
+  }
+
+  .contact-detail__val {
+    font-size: 0.9rem;
+    color: var(--white);
+  }
+
+  .form-b2b {
+    background: var(--bg2);
+    border: 1px solid var(--line);
+    padding: 2.5rem;
+  }
+
+  .form-b2b h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-b2b p {
+    font-size: 0.8rem;
+    color: var(--gray);
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--line2);
+  }
+
+  .f-group { margin-bottom: 1rem; }
+
+  .f-group label {
+    display: block;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0.4rem;
+  }
+
+  .f-group input,
+  .f-group select,
+  .f-group textarea {
+    width: 100%;
+    background: rgba(238,240,242,0.04);
+    border: 1px solid var(--line2);
+    border-bottom: 1px solid rgba(232,88,10,0.3);
+    padding: 0.8rem 1rem;
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .f-group select option { background: var(--bg2); }
+  .f-group input:focus, .f-group select:focus, .f-group textarea:focus {
+    border-bottom-color: var(--orange2);
+  }
+
+  .f-group textarea { min-height: 90px; resize: vertical; }
+
+  .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .btn-b2b {
+    width: 100%;
+    background: var(--orange);
+    color: var(--white);
+    border: none;
+    padding: 1rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 1rem;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    transition: background 0.2s;
+  }
+
+  .btn-b2b:hover { background: var(--orange2); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg3);
+    border-top: 2px solid var(--orange);
+    padding: 2.5rem 0;
+  }
+
+  .footer__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer__brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    letter-spacing: 0.05em;
+  }
+
+  .footer__brand span {
+    display: block;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.5rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: 400;
+  }
+
+  .footer__copy {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    color: var(--gray);
+  }
+
+  /* ── ANIMS ── */
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero__eyebrow { animation: slide-up 0.5s ease both 0.1s; }
+  .hero__title { animation: slide-up 0.6s ease both 0.2s; }
+  .hero__desc { animation: slide-up 0.6s ease both 0.35s; }
+  .hero__btns { animation: slide-up 0.6s ease both 0.5s; }
+  .hero__stats { animation: slide-up 0.7s ease both 0.3s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    .hero__content { grid-template-columns: 1fr; }
+    .hero__stats { flex-direction: row; flex-wrap: wrap; gap: 1rem; }
+    .h-stat + .h-stat { border-top: none; padding-top: 0; border-left: 1px solid var(--line); padding-left: 1.5rem; }
+    nav { display: none; }
+    .how__grid { grid-template-columns: 1fr; gap: 3rem; }
+    .contact__grid { grid-template-columns: 1fr; gap: 3rem; }
+    .footer__inner { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    .cat-grid { grid-template-columns: 1fr; }
+    .f-row { grid-template-columns: 1fr; }
+    .hero__title { font-size: 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header__inner">
+    <div class="logo">
+      <div class="logo__mark"></div>
+      <div class="logo__name">
+        Vértice
+        <span>Distribuciones · Chile</span>
+      </div>
+    </div>
+    <nav>
+      <a href="#categorias">Catálogo</a>
+      <a href="#cobertura">Cobertura</a>
+      <a href="#cotizar">Cotizar</a>
+    </nav>
+    <a href="#cotizar" class="header__cta">Ser distribuidor</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__accent"></div>
+  <div class="hero__accent2"></div>
+  <div class="hero__content">
+    <div>
+      <div class="hero__eyebrow">Distribución mayorista · Desde 2008</div>
+      <h1 class="hero__title">PROVEEMOS<br>AL QUE<br><span>CONSTRUYE.</span></h1>
+      <p class="hero__desc">
+        Distribuidor mayorista de herramientas, materiales y equipos para ferreterías, constructoras y empresas industriales en todo Chile. Despacho en 48 horas.
+      </p>
+      <div class="hero__btns">
+        <a href="#cotizar" class="btn-hero">Solicitar cotización</a>
+        <a href="#categorias" class="btn-hero2">Ver catálogo →</a>
+      </div>
+    </div>
+    <div class="hero__stats">
+      <div class="h-stat">
+        <span class="h-stat__num">+3.200</span>
+        <span class="h-stat__label">SKU disponibles</span>
+      </div>
+      <div class="h-stat">
+        <span class="h-stat__num">48h</span>
+        <span class="h-stat__label">Despacho Santiago</span>
+      </div>
+      <div class="h-stat">
+        <span class="h-stat__num">15</span>
+        <span class="h-stat__label">Regiones cubiertas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee__track">
+    <span class="marquee__item">Herramientas eléctricas</span>
+    <span class="marquee__item">Materiales de construcción</span>
+    <span class="marquee__item">Equipos de seguridad</span>
+    <span class="marquee__item">Pinturas industriales</span>
+    <span class="marquee__item">Grifería y sanitarios</span>
+    <span class="marquee__item">Iluminación LED</span>
+    <span class="marquee__item">Fijaciones y anclajes</span>
+    <span class="marquee__item">Herramientas eléctricas</span>
+    <span class="marquee__item">Materiales de construcción</span>
+    <span class="marquee__item">Equipos de seguridad</span>
+    <span class="marquee__item">Pinturas industriales</span>
+    <span class="marquee__item">Grifería y sanitarios</span>
+    <span class="marquee__item">Iluminación LED</span>
+    <span class="marquee__item">Fijaciones y anclajes</span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="categories" id="categorias">
+  <div class="container">
+    <div class="sec-tag">Catálogo</div>
+    <h2 class="sec-title">LO QUE<br><span>DISTRIBUIMOS</span></h2>
+    <div class="cat-grid">
+      <div class="cat-card">
+        <span class="cat-num">CAT-01</span>
+        <span class="cat-icon">🔧</span>
+        <h3 class="cat-name">Herramientas</h3>
+        <p class="cat-desc">Eléctricas, neumáticas y manuales. Marcas premium con garantía. Desde taladros hasta compresores industriales.</p>
+      </div>
+      <div class="cat-card">
+        <span class="cat-num">CAT-02</span>
+        <span class="cat-icon">🏗️</span>
+        <h3 class="cat-name">Construcción</h3>
+        <p class="cat-desc">Cemento, áridos, mallas, fierros y materiales estructurales. Volúmenes para obra con entrega directa en terreno.</p>
+      </div>
+      <div class="cat-card">
+        <span class="cat-num">CAT-03</span>
+        <span class="cat-icon">🦺</span>
+        <h3 class="cat-name">Seguridad Industrial</h3>
+        <p class="cat-desc">EPP certificado, ropa de trabajo, calzado de seguridad y señalética. Cumplimiento normativa DS 594.</p>
+      </div>
+      <div class="cat-card">
+        <span class="cat-num">CAT-04</span>
+        <span class="cat-icon">💡</span>
+        <h3 class="cat-name">Eléctrica e Iluminación</h3>
+        <p class="cat-desc">Cables, tableros, luminarias LED industriales y residenciales. Ahorro energético certificado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW + COVERAGE -->
+<section class="how" id="cobertura">
+  <div class="container">
+    <div class="sec-tag">Proceso</div>
+    <h2 class="sec-title">CÓMO<br><span>TRABAJAMOS</span></h2>
+    <div class="how__grid">
+      <div class="how__left">
+        <div class="step">
+          <span class="step__num">01</span>
+          <div class="step__body">
+            <h3 class="step__name">Solicite cotización</h3>
+            <p class="step__desc">Envíe su lista de productos con las cantidades requeridas. Respondemos en menos de 4 horas hábiles con precios mayoristas.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step__num">02</span>
+          <div class="step__body">
+            <h3 class="step__name">Confirme pedido</h3>
+            <p class="step__desc">Acepte la cotización, emita la OC y coordine el método de pago. Aceptamos transferencia, cheque y crédito a 30/60 días.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step__num">03</span>
+          <div class="step__body">
+            <h3 class="step__name">Reciba en faena</h3>
+            <p class="step__desc">Coordinamos entrega directa en su obra o local. Seguimiento en tiempo real. Guía y factura electrónica incluidas.</p>
+          </div>
+        </div>
+      </div>
+      <div class="how__right">
+        <h3 class="how__right-title">COBERTURA <span>NACIONAL</span></h3>
+        <ul class="zone-list">
+          <li class="zone-item">
+            <span class="zone-name">Santiago RM</span>
+            <span class="zone-time">24h</span>
+          </li>
+          <li class="zone-item">
+            <span class="zone-name">Valparaíso — V Región</span>
+            <span class="zone-time">48h</span>
+          </li>
+          <li class="zone-item">
+            <span class="zone-name">Concepción — VIII Región</span>
+            <span class="zone-time">48h</span>
+          </li>
+          <li class="zone-item">
+            <span class="zone-name">Antofagasta — II Región</span>
+            <span class="zone-time">72h</span>
+          </li>
+          <li class="zone-item">
+            <span class="zone-name">La Serena — IV Región</span>
+            <span class="zone-time">48h</span>
+          </li>
+          <li class="zone-item">
+            <span class="zone-name">Temuco — IX Región</span>
+            <span class="zone-time">72h</span>
+          </li>
+          <li class="zone-item">
+            <span class="zone-name">Puerto Montt — X Región</span>
+            <span class="zone-time">96h</span>
+          </li>
+          <li class="zone-item">
+            <span class="zone-name">Norte Grande (I, II, III)</span>
+            <span class="zone-time">5-7 días</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="cotizar">
+  <div class="container">
+    <div class="sec-tag">Contacto B2B</div>
+    <h2 class="sec-title">SOLICITE SU<br><span>COTIZACIÓN</span></h2>
+    <div class="contact__grid">
+      <div class="contact__left">
+        <h3>¿Listo para <span>abastecer</span> su negocio?</h3>
+        <p>Complete el formulario o escríbanos directamente. Tenemos ejecutivos dedicados para clientes mayoristas. Sin mínimos de pedido para nuevos clientes.</p>
+        <div class="contact-detail">
+          <div class="contact-detail__icon">📞</div>
+          <div>
+            <span class="contact-detail__label">Ventas B2B</span>
+            <span class="contact-detail__val">+56 9 2345 6789</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail__icon">✉️</div>
+          <div>
+            <span class="contact-detail__label">Email</span>
+            <span class="contact-detail__val">ventas@vertice.cl</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail__icon">🏭</div>
+          <div>
+            <span class="contact-detail__label">Bodega central</span>
+            <span class="contact-detail__val">Av. Industrial 4500, Pudahuel, Santiago</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail__icon">🕐</div>
+          <div>
+            <span class="contact-detail__label">Atención comercial</span>
+            <span class="contact-detail__val">Lun–Vie 8:00–18:00</span>
+          </div>
+        </div>
+      </div>
+      <div class="form-b2b">
+        <h4>Formulario de cotización</h4>
+        <p>Ingrese sus datos y nos comunicamos hoy mismo con precios mayoristas.</p>
+        <form onsubmit="handleSubmit(event)">
+          <div class="f-row">
+            <div class="f-group">
+              <label>Nombre contacto</label>
+              <input type="text" placeholder="Felipe Ramírez" required>
+            </div>
+            <div class="f-group">
+              <label>Empresa</label>
+              <input type="text" placeholder="Ferretería El Clavo SpA" required>
+            </div>
+          </div>
+          <div class="f-row">
+            <div class="f-group">
+              <label>RUT empresa</label>
+              <input type="text" placeholder="76.543.210-K">
+            </div>
+            <div class="f-group">
+              <label>Teléfono</label>
+              <input type="tel" placeholder="+56 9 XXXX XXXX" required>
+            </div>
+          </div>
+          <div class="f-group">
+            <label>Email comercial</label>
+            <input type="email" placeholder="compras@ferreteria.cl" required>
+          </div>
+          <div class="f-group">
+            <label>Tipo de negocio</label>
+            <select>
+              <option>Ferretería</option>
+              <option>Constructora</option>
+              <option>Industria</option>
+              <option>Empresa de mantenimiento</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label>Productos requeridos</label>
+            <textarea placeholder="Liste los productos o categorías de interés con cantidades aproximadas..."></textarea>
+          </div>
+          <button type="submit" class="btn-b2b">Enviar solicitud →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer__inner">
+    <div class="footer__brand">
+      Vértice Distribuciones
+      <span>Distribución mayorista · Chile · Desde 2008</span>
+    </div>
+    <p class="footer__copy">© 2025 Vértice Distribuciones SpA · ventas@vertice.cl</p>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type=submit]');
+  btn.textContent = 'Solicitud enviada ✓';
+  btn.style.background = '#1a4d1a';
+  setTimeout(() => {
+    btn.textContent = 'Enviar solicitud →';
+    btn.style.background = '';
+    e.target.reset();
+  }, 3000);
+}
+</script>
+</body>
+</html>

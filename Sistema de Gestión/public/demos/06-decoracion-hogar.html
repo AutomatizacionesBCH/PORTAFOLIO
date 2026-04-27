@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Madera & Alma — Decoración para el Hogar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Cormorant+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF6F0;
+    --warm: #F2EBE0;
+    --terra: #B5714A;
+    --terra-dark: #8A4F2E;
+    --earth: #6B5744;
+    --sand: #D9C4A8;
+    --text: #2C2218;
+    --text-soft: #7A6558;
+    --line: rgba(107,87,68,0.15);
+    --green: #4A6741;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── ANNOUNCEMENT ── */
+  .announce {
+    background: var(--terra);
+    padding: 0.5rem 2rem;
+    text-align: center;
+  }
+
+  .announce p {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: white;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250,246,240,0.97);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(8px);
+  }
+
+  .header__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    height: 72px;
+  }
+
+  nav { display: flex; gap: 2.5rem; }
+
+  nav a {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--terra); }
+
+  .logo {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .logo span {
+    display: block;
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.4em;
+    color: var(--terra);
+    margin-top: 3px;
+  }
+
+  .header__actions {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .header__actions a {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .header__actions a:hover { color: var(--terra); }
+
+  .cart-badge {
+    background: var(--terra);
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: calc(100vh - 100px);
+  }
+
+  .hero__panel {
+    position: relative;
+    overflow: hidden;
+    border-right: 1px solid var(--line);
+  }
+
+  .hero__panel:last-child { border-right: none; }
+
+  .hero__panel-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10rem;
+    opacity: 0.08;
+  }
+
+  .hero__panel--center {
+    background: var(--terra);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 3rem;
+  }
+
+  .hero__panel--left {
+    background: var(--warm);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 3rem;
+  }
+
+  .hero__panel--right {
+    background: var(--earth);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 3rem;
+  }
+
+  .hero__eyebrow {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 2rem;
+    display: block;
+  }
+
+  .hero__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 4.5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__title em { font-style: italic; }
+
+  .hero__desc {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 2.5rem;
+    max-width: 260px;
+  }
+
+  .btn-hero {
+    display: inline-block;
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--terra);
+    background: white;
+    padding: 0.9rem 2rem;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    width: fit-content;
+  }
+
+  .btn-hero:hover { background: var(--cream); }
+
+  .side-card-tag {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.75rem;
+    opacity: 0.6;
+  }
+
+  .side-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+  }
+
+  .side-card-name em { font-style: italic; }
+
+  .side-card-price {
+    font-family: 'Cormorant SC', serif;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    color: var(--terra);
+  }
+
+  .side-card-right {
+    color: white;
+  }
+
+  .side-card-right .side-card-price { color: var(--sand); }
+
+  /* ── CATEGORIES STRIP ── */
+  .cat-strip {
+    background: var(--text);
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .cat-strip__track {
+    display: flex;
+    animation: scroll-r 30s linear infinite;
+    width: max-content;
+  }
+
+  .cat-strip__item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 3rem;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    white-space: nowrap;
+  }
+
+  .cat-strip__name {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(250,246,240,0.5);
+  }
+
+  .cat-strip__dot {
+    width: 4px; height: 4px;
+    background: var(--terra);
+    border-radius: 50%;
+  }
+
+  @keyframes scroll-r {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ── FEATURED ── */
+  .featured {
+    padding: 7rem 0;
+  }
+
+  .featured .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+  }
+
+  .featured__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .featured__header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+  }
+
+  .featured__header h2 em { font-style: italic; color: var(--terra); }
+
+  .view-all {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terra);
+    text-decoration: none;
+    border-bottom: 1px solid var(--terra);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+
+  .view-all:hover { color: var(--terra-dark); }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .prod-card {
+    cursor: pointer;
+  }
+
+  .prod-card:hover .prod-img { transform: scale(1.03); }
+
+  .prod-img-wrap {
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    background: var(--warm);
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .prod-img {
+    font-size: 5rem;
+    transition: transform 0.5s ease;
+  }
+
+  .prod-badge {
+    position: absolute;
+    top: 1rem; left: 1rem;
+    background: var(--terra);
+    color: white;
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .prod-cat {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .prod-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+  }
+
+  .prod-name em { font-style: italic; }
+
+  .prod-mat {
+    font-size: 0.78rem;
+    color: var(--text-soft);
+    margin-bottom: 0.75rem;
+  }
+
+  .prod-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .prod-price {
+    font-family: 'Cormorant SC', serif;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    color: var(--terra);
+  }
+
+  .prod-add {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text);
+    background: transparent;
+    border: 1px solid var(--line);
+    padding: 0.4rem 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .prod-add:hover { background: var(--terra); color: white; border-color: var(--terra); }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--warm);
+    padding: 7rem 0;
+  }
+
+  .about .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .about__visual {
+    background: var(--sand);
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10rem;
+    position: relative;
+  }
+
+  .about__visual::after {
+    content: '';
+    position: absolute;
+    bottom: -1.5rem;
+    right: -1.5rem;
+    width: 70%;
+    height: 70%;
+    border: 2px solid var(--terra);
+    z-index: -1;
+  }
+
+  .about__content {}
+
+  .about__tag {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .about__tag::before { content: ''; width: 30px; height: 1px; background: var(--terra); }
+
+  .about__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .about__title em { font-style: italic; color: var(--terra); }
+
+  .about__text {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text-soft);
+    margin-bottom: 2rem;
+  }
+
+  .about__values {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .about__val {
+    padding: 1.25rem;
+    border: 1px solid var(--line);
+    background: var(--cream);
+  }
+
+  .about__val-icon { font-size: 1.2rem; margin-bottom: 0.5rem; display: block; }
+
+  .about__val-name {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--terra);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .about__val-desc {
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    line-height: 1.5;
+  }
+
+  .btn-about {
+    display: inline-block;
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: white;
+    background: var(--terra);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn-about:hover { background: var(--terra-dark); }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 7rem 0;
+  }
+
+  .contact .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .contact__left h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 4rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact__left h2 em { font-style: italic; color: var(--terra); }
+
+  .contact__left p {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: var(--text-soft);
+    margin-bottom: 2.5rem;
+  }
+
+  .c-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .c-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--warm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .c-label {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terra);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .c-val {
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+
+  .contact__form {
+    background: var(--warm);
+    border: 1px solid var(--line);
+    padding: 3rem;
+  }
+
+  .contact__form h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.75rem;
+    font-weight: 300;
+    margin-bottom: 0.25rem;
+  }
+
+  .contact__form h3 em { font-style: italic; color: var(--terra); }
+
+  .contact__form p {
+    font-size: 0.82rem;
+    color: var(--text-soft);
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .f-g { margin-bottom: 1.25rem; }
+
+  .f-g label {
+    display: block;
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin-bottom: 0.4rem;
+  }
+
+  .f-g input, .f-g select, .f-g textarea {
+    width: 100%;
+    background: white;
+    border: 1px solid var(--line);
+    padding: 0.8rem 1rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+
+  .f-g select option { background: white; }
+  .f-g input:focus, .f-g select:focus, .f-g textarea:focus { border-color: var(--terra); }
+  .f-g textarea { min-height: 100px; resize: vertical; }
+
+  .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .btn-contact {
+    width: 100%;
+    background: var(--terra);
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: background 0.2s;
+  }
+
+  .btn-contact:hover { background: var(--terra-dark); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--text);
+    color: var(--cream);
+    padding: 3rem 0;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .footer__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer__brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  .footer__brand span {
+    display: block;
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-top: 3px;
+  }
+
+  .footer__copy {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    color: rgba(250,246,240,0.35);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── ANIMS ── */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero__eyebrow { animation: fade-up 0.5s ease both 0.1s; }
+  .hero__title { animation: fade-up 0.6s ease both 0.25s; }
+  .hero__desc { animation: fade-up 0.6s ease both 0.4s; }
+  .btn-hero { animation: fade-up 0.6s ease both 0.55s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; height: auto; }
+    .hero__panel--left { display: none; }
+    .hero__panel--right { display: none; }
+    .hero__panel--center { padding: 5rem 2.5rem; min-height: 80vh; }
+    .header__inner { grid-template-columns: 1fr auto; }
+    nav { display: none; }
+    .about .container { grid-template-columns: 1fr; gap: 3rem; }
+    .about__visual { max-width: 400px; }
+    .contact .container { grid-template-columns: 1fr; gap: 3rem; }
+    .footer__inner { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    .product-grid { grid-template-columns: 1fr; }
+    .about__values { grid-template-columns: 1fr; }
+    .f-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">
+  <p>🌿 Envío gratis a todo Chile en compras sobre $45.000 · Embalaje sustentable · +4.200 hogares decorados</p>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header__inner">
+    <nav>
+      <a href="#coleccion">Colección</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="logo">
+      Madera & Alma
+      <span>Decoración · Chile</span>
+    </div>
+    <div class="header__actions">
+      <a href="#contacto">Buscar</a>
+      <a href="#coleccion">Carrito <span class="cart-badge">0</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__panel hero__panel--left">
+    <div class="hero__panel-bg">🪴</div>
+    <span class="side-card-tag">Destacado</span>
+    <div class="side-card-name">Florero<br><em>Cerámica</em><br>Artesanal</div>
+    <div class="side-card-price">$28.990</div>
+  </div>
+  <div class="hero__panel hero__panel--center">
+    <span class="hero__eyebrow">Nueva Colección Otoño 2025</span>
+    <h1 class="hero__title">
+      Espacios<br>
+      que<br>
+      <em>respiran.</em>
+    </h1>
+    <p class="hero__desc">Objetos de decoración que cuentan una historia. Diseño consciente para hogares chilenos.</p>
+    <a href="#coleccion" class="btn-hero">Explorar colección</a>
+  </div>
+  <div class="hero__panel hero__panel--right">
+    <div class="hero__panel-bg">🕯️</div>
+    <div class="side-card-right">
+      <span class="side-card-tag">Más vendido</span>
+      <div class="side-card-name">Set de<br><em>Velas</em><br>Aromáticas</div>
+      <div class="side-card-price">$19.990</div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORY STRIP -->
+<div class="cat-strip">
+  <div class="cat-strip__track">
+    <div class="cat-strip__item"><span class="cat-strip__name">Textiles</span><span class="cat-strip__dot"></span></div>
+    <div class="cat-strip__item"><span class="cat-strip__name">Iluminación</span><span class="cat-strip__dot"></span></div>
+    <div class="cat-strip__item"><span class="cat-strip__name">Cerámica</span><span class="cat-strip__dot"></span></div>
+    <div class="cat-strip__item"><span class="cat-strip__name">Plantas y maceteros</span><span class="cat-strip__dot"></span></div>
+    <div class="cat-strip__item"><span class="cat-strip__name">Cuadros y arte</span><span class="cat-strip__dot"></span></div>
+    <div class="cat-strip__item"><span class="cat-strip__name">Muebles pequeños</span><span class="cat-strip__dot"></span></div>
+    <div class="cat-strip__item"><span class="cat-strip__name">Velas y aromas</span><span class="cat-strip__dot"></span></div>
+    <div class="cat-strip__item"><span class="cat-strip__name">Cojines</span><span class="cat-strip__dot"></span></div>
+    <div class="cat-strip__item"><span class="cat-strip__name">Textiles</span><span class="cat-strip__dot"></span></div>
+    <div class="cat-strip__item"><span class="cat-strip__name">Iluminación</span><span class="cat-strip__dot"></span></div>
+    <div class="cat-strip__item"><span class="cat-strip__name">Cerámica</span><span class="cat-strip__dot"></span></div>
+    <div class="cat-strip__item"><span class="cat-strip__name">Plantas y maceteros</span><span class="cat-strip__dot"></span></div>
+    <div class="cat-strip__item"><span class="cat-strip__name">Cuadros y arte</span><span class="cat-strip__dot"></span></div>
+    <div class="cat-strip__item"><span class="cat-strip__name">Muebles pequeños</span><span class="cat-strip__dot"></span></div>
+    <div class="cat-strip__item"><span class="cat-strip__name">Velas y aromas</span><span class="cat-strip__dot"></span></div>
+    <div class="cat-strip__item"><span class="cat-strip__name">Cojines</span><span class="cat-strip__dot"></span></div>
+  </div>
+</div>
+
+<!-- FEATURED -->
+<section class="featured" id="coleccion">
+  <div class="container">
+    <div class="featured__header">
+      <h2>Piezas que<br><em>transforman</em> tu hogar</h2>
+      <a href="#contacto" class="view-all">Ver toda la colección →</a>
+    </div>
+    <div class="product-grid">
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <span class="prod-img">🪴</span>
+          <span class="prod-badge">Nuevo</span>
+        </div>
+        <span class="prod-cat">Plantas & Maceteros</span>
+        <div class="prod-name">Macetero de <em>Terrazo</em></div>
+        <div class="prod-mat">Terrazo blanco · 25cm</div>
+        <div class="prod-price-row">
+          <div class="prod-price">$24.990</div>
+          <button class="prod-add">Agregar</button>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img-wrap" style="background: var(--earth)">
+          <span class="prod-img" style="font-size:3.5rem">🕯️</span>
+        </div>
+        <span class="prod-cat">Velas & Aromas</span>
+        <div class="prod-name">Set Velas <em>Artesanales</em></div>
+        <div class="prod-mat">Cera de soya · Pack x3 · Lavanda y cedro</div>
+        <div class="prod-price-row">
+          <div class="prod-price">$19.990</div>
+          <button class="prod-add">Agregar</button>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img-wrap">
+          <span class="prod-img">🖼️</span>
+          <span class="prod-badge">-20%</span>
+        </div>
+        <span class="prod-cat">Cuadros & Arte</span>
+        <div class="prod-name">Lámina <em>Botánica</em> Enmarcada</div>
+        <div class="prod-mat">Marco de roble · 40×50 cm</div>
+        <div class="prod-price-row">
+          <div class="prod-price">$34.990</div>
+          <button class="prod-add">Agregar</button>
+        </div>
+      </div>
+      <div class="prod-card">
+        <div class="prod-img-wrap" style="background: var(--sand)">
+          <span class="prod-img">🏺</span>
+        </div>
+        <span class="prod-cat">Cerámica</span>
+        <div class="prod-name">Florero <em>Estudio</em> Japonés</div>
+        <div class="prod-mat">Gres artesanal · Hecho en Chile</div>
+        <div class="prod-price-row">
+          <div class="prod-price">$28.990</div>
+          <button class="prod-add">Agregar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="nosotros">
+  <div class="container">
+    <div class="about__visual">🌿</div>
+    <div class="about__content">
+      <div class="about__tag">Nuestra historia</div>
+      <h2 class="about__title">Diseño con<br>alma <em>chilena.</em></h2>
+      <p class="about__text">Nació en 2019 en Santiago como un proyecto pequeño de decoración con materiales naturales. Hoy somos una tienda con más de 200 productos seleccionados, priorizando artesanos locales y proveedores sustentables.</p>
+      <div class="about__values">
+        <div class="about__val">
+          <span class="about__val-icon">🌿</span>
+          <span class="about__val-name">Materiales naturales</span>
+          <div class="about__val-desc">Madera, cerámica, algodón y lino seleccionados por su origen y durabilidad.</div>
+        </div>
+        <div class="about__val">
+          <span class="about__val-icon">🇨🇱</span>
+          <span class="about__val-name">Hecho en Chile</span>
+          <div class="about__val-desc">Más del 60% de nuestra colección es producida por artesanos y diseñadores chilenos.</div>
+        </div>
+        <div class="about__val">
+          <span class="about__val-icon">📦</span>
+          <span class="about__val-name">Embalaje sustentable</span>
+          <div class="about__val-desc">Sin plástico. Todo nuestro embalaje es reciclado y biodegradable.</div>
+        </div>
+        <div class="about__val">
+          <span class="about__val-icon">💬</span>
+          <span class="about__val-name">Asesoría de decoración</span>
+          <div class="about__val-desc">Te ayudamos a elegir qué combina en tu espacio. Gratis por WhatsApp.</div>
+        </div>
+      </div>
+      <a href="#contacto" class="btn-about">Contactar asesor →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <div class="container">
+    <div class="contact__left">
+      <h2>¿Transformamos<br>tu <em>espacio</em>?</h2>
+      <p>Cuéntanos el estilo de tu hogar y te ayudamos a elegir las piezas perfectas. Atención personalizada sin costo.</p>
+      <div class="c-item">
+        <div class="c-icon">📞</div>
+        <div>
+          <span class="c-label">WhatsApp</span>
+          <span class="c-val">+56 9 2345 6789</span>
+        </div>
+      </div>
+      <div class="c-item">
+        <div class="c-icon">✉️</div>
+        <div>
+          <span class="c-label">Email</span>
+          <span class="c-val">hola@maderaalma.cl</span>
+        </div>
+      </div>
+      <div class="c-item">
+        <div class="c-icon">📍</div>
+        <div>
+          <span class="c-label">Showroom</span>
+          <span class="c-val">Av. Italia 950, Ñuñoa · Santiago</span>
+        </div>
+      </div>
+      <div class="c-item">
+        <div class="c-icon">🕐</div>
+        <div>
+          <span class="c-label">Horario showroom</span>
+          <span class="c-val">Jue–Dom 11:00–19:00</span>
+        </div>
+      </div>
+    </div>
+    <div class="contact__form">
+      <h3>Asesoría de <em>decoración</em></h3>
+      <p>Cuéntanos tu espacio y recibe recomendaciones personalizadas en 24h.</p>
+      <form onsubmit="handleSubmit(event)">
+        <div class="f-row">
+          <div class="f-g">
+            <label>Tu nombre</label>
+            <input type="text" placeholder="Sofía Riquelme" required>
+          </div>
+          <div class="f-g">
+            <label>Email</label>
+            <input type="email" placeholder="sofia@correo.cl" required>
+          </div>
+        </div>
+        <div class="f-g">
+          <label>Teléfono (WhatsApp)</label>
+          <input type="tel" placeholder="+56 9 XXXX XXXX">
+        </div>
+        <div class="f-g">
+          <label>¿Qué espacio quieres decorar?</label>
+          <select>
+            <option>Dormitorio</option>
+            <option>Living / Comedor</option>
+            <option>Cocina</option>
+            <option>Oficina en casa</option>
+            <option>Todo el hogar</option>
+          </select>
+        </div>
+        <div class="f-g">
+          <label>Mensaje (opcional)</label>
+          <textarea placeholder="Cuéntanos el estilo que te gusta: minimalista, boho, escandinavo..."></textarea>
+        </div>
+        <button type="submit" class="btn-contact">Solicitar asesoría →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer__inner">
+    <div class="footer__brand">
+      Madera & Alma
+      <span>Decoración para el hogar · Santiago, Chile</span>
+    </div>
+    <p class="footer__copy">© 2025 Madera & Alma · hola@maderaalma.cl</p>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-contact');
+  btn.textContent = 'Solicitud enviada ✓';
+  setTimeout(() => {
+    btn.textContent = 'Solicitar asesoría →';
+    e.target.reset();
+  }, 3000);
+}
+
+document.querySelectorAll('.prod-add').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    btn.textContent = '✓ Agregado';
+    btn.style.background = 'var(--green)';
+    btn.style.borderColor = 'var(--green)';
+    btn.style.color = 'white';
+    setTimeout(() => {
+      btn.textContent = 'Agregar';
+      btn.style.background = '';
+      btn.style.borderColor = '';
+      btn.style.color = '';
+    }, 1500);
+  });
+});
+</script>
+</body>
+</html>
