@@ -2,19 +2,17 @@
 
 /* ── BCH — tema claro profesional ── */
 @theme {
-  /* Fondos — escala invertida para tema claro */
-  --color-slate-950: #F4F7FA;     /* fondo de página */
-  --color-slate-900: #FFFFFF;     /* cards — blanco puro */
-  --color-slate-800: #C8D8E8;     /* bordes y hover */
-  --color-slate-700: #A8C0D4;     /* bordes fuertes */
-  --color-slate-600: #7B9BB5;     /* texto muy muted */
-  --color-slate-500: #5A7A96;     /* texto muted */
-  --color-slate-400: #3D5A78;     /* texto secundario */
-  --color-slate-300: #244565;     /* texto body */
-  --color-slate-200: #152E4A;     /* texto fuerte */
-  --color-slate-100: #0A1929;     /* texto principal — navy oscuro */
+  --color-slate-950: #F4F7FA;
+  --color-slate-900: #FFFFFF;
+  --color-slate-800: #C8D8E8;
+  --color-slate-700: #A8C0D4;
+  --color-slate-600: #7B9BB5;
+  --color-slate-500: #5A7A96;
+  --color-slate-400: #3D5A78;
+  --color-slate-300: #244565;
+  --color-slate-200: #152E4A;
+  --color-slate-100: #0A1929;
 
-  /* Acento — cyan BCH → más oscuro para legibilidad en fondo claro */
   --color-blue-700: #1B2A4A;
   --color-blue-600: #2A5298;
   --color-blue-500: #3A8CC0;
@@ -23,16 +21,28 @@
   --color-blue-200: #B8E2F8;
   --color-blue-100: #E0F3FC;
   --color-blue-50:  #F0F9FE;
-
-  /* Tokens semánticos */
-  --color-accent:        #1A7FC1;
-  --color-accent-hover:  #156FA8;
-  --color-text:          #0A1929;
-  --color-text-secondary:#3D5A78;
-  --color-text-muted:    #5A7A96;
 }
 
+/*
+  Forzar los overrides como reglas :root sin layer.
+  En CSS Cascade Level 5, estilos sin @layer siempre ganan sobre
+  los que están dentro de un @layer (como @layer theme de Tailwind).
+*/
 :root {
+  --color-slate-950: #F4F7FA;
+  --color-slate-900: #FFFFFF;
+  --color-slate-800: #C8D8E8;
+  --color-slate-700: #A8C0D4;
+  --color-slate-600: #7B9BB5;
+  --color-slate-500: #5A7A96;
+  --color-slate-400: #3D5A78;
+  --color-slate-300: #244565;
+  --color-slate-200: #152E4A;
+  --color-slate-100: #0A1929;
+  --color-blue-400: #1A7FC1;
+  --color-blue-500: #3A8CC0;
+  --color-blue-600: #2A5298;
+  --color-blue-700: #1B2A4A;
   --background: #F4F7FA;
   --foreground: #0A1929;
 }
@@ -60,12 +70,6 @@ body {
   border-radius: 0;
 }
 ::-webkit-scrollbar-thumb:hover { background: rgba(26,127,193,0.35); }
-
-.table-scroll {
-  overflow-x: scroll;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(26,127,193,0.2) #F4F7FA;
-}
 
 /* Focus */
 :focus-visible { outline: 2px solid #1A7FC1; outline-offset: 2px; }
