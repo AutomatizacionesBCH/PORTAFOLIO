@@ -18,24 +18,24 @@ export function StatCard({
   delta,
   deltaDirection = 'neutral',
   icon: Icon,
-  iconColor = 'text-blue-400',
+  iconColor = 'text-white/60',
   sublabel,
 }: StatCardProps) {
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition-colors">
+    <div className="bg-[#162035] border border-white/[0.07] rounded-lg p-5 hover:border-white/[0.13] transition-colors">
       <div className="flex items-start justify-between">
-        <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">
+        <span className="text-[10px] font-semibold text-white/35 uppercase tracking-widest">
           {label}
         </span>
         {Icon && (
-          <div className="w-8 h-8 rounded-md bg-slate-800 flex items-center justify-center">
-            <Icon className={cn('w-4 h-4', iconColor)} />
+          <div className="w-7 h-7 rounded bg-white/[0.06] flex items-center justify-center">
+            <Icon className={cn('w-3.5 h-3.5', iconColor)} />
           </div>
         )}
       </div>
 
       <div className="mt-3">
-        <span className="text-2xl font-bold text-slate-100 font-mono">{value}</span>
+        <span className="text-2xl font-bold text-white font-mono">{value}</span>
       </div>
 
       {(delta || sublabel) && (
@@ -44,9 +44,9 @@ export function StatCard({
             <span
               className={cn(
                 'flex items-center gap-0.5 text-xs font-medium',
-                deltaDirection === 'up' && 'text-green-400',
+                deltaDirection === 'up' && 'text-emerald-400',
                 deltaDirection === 'down' && 'text-red-400',
-                deltaDirection === 'neutral' && 'text-slate-400'
+                deltaDirection === 'neutral' && 'text-white/40'
               )}
             >
               {deltaDirection === 'up' && <TrendingUp className="w-3 h-3" />}
@@ -54,7 +54,7 @@ export function StatCard({
               {delta}
             </span>
           )}
-          {sublabel && <span className="text-xs text-slate-500">{sublabel}</span>}
+          {sublabel && <span className="text-xs text-white/30">{sublabel}</span>}
         </div>
       )}
     </div>

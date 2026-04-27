@@ -22,11 +22,11 @@ export function DataTable<T extends Record<string, unknown>>({
     <TableScroll>
       <table className="w-full text-sm">
         <thead>
-          <tr className="border-b border-slate-800">
+          <tr className="border-b border-white/[0.07]">
             {columns.map((col) => (
               <th
                 key={String(col.key)}
-                className="text-left py-3 px-4 text-xs font-medium text-slate-400 uppercase tracking-wider"
+                className="text-left py-3 px-4 text-[10px] font-semibold text-white/30 uppercase tracking-widest"
                 style={col.width ? { width: col.width } : undefined}
               >
                 {col.header}
@@ -39,7 +39,7 @@ export function DataTable<T extends Record<string, unknown>>({
             <tr>
               <td
                 colSpan={columns.length}
-                className="py-12 text-center text-slate-500 text-xs"
+                className="py-12 text-center text-white/25 text-xs"
               >
                 {emptyMessage}
               </td>
@@ -48,10 +48,10 @@ export function DataTable<T extends Record<string, unknown>>({
             data.map((row, i) => (
               <tr
                 key={i}
-                className="border-b border-slate-800/60 hover:bg-slate-800/30 transition-colors"
+                className="border-b border-white/[0.05] hover:bg-white/[0.03] transition-colors"
               >
                 {columns.map((col) => (
-                  <td key={String(col.key)} className="py-3 px-4 text-slate-300">
+                  <td key={String(col.key)} className="py-3 px-4 text-white/70">
                     {col.render
                       ? col.render(row)
                       : String(row[col.key as keyof T] ?? '—')}

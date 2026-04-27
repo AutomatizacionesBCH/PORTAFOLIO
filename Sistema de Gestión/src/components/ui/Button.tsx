@@ -5,10 +5,10 @@ type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger'
 type ButtonSize = 'sm' | 'md'
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary:   'bg-blue-600 hover:bg-blue-700 text-white border-transparent',
-  secondary: 'bg-slate-800 hover:bg-slate-700 text-slate-200 border-slate-700',
-  ghost:     'bg-transparent hover:bg-slate-800 text-slate-400 border-transparent',
-  danger:    'bg-red-600/10 hover:bg-red-600/20 text-red-400 border-red-500/30',
+  primary:   'bg-white hover:bg-white/90 text-[#0d1526] border-transparent font-semibold',
+  secondary: 'bg-white/[0.07] hover:bg-white/[0.11] text-white/80 border-white/[0.09]',
+  ghost:     'bg-transparent hover:bg-white/[0.05] text-white/50 border-transparent',
+  danger:    'bg-red-500/10 hover:bg-red-500/20 text-red-400 border-red-500/20',
 }
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -34,8 +34,8 @@ export function Button({
   return (
     <button
       className={cn(
-        'inline-flex items-center justify-center rounded-md font-medium border',
-        'transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer',
+        'inline-flex items-center justify-center rounded font-medium border',
+        'transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer',
         variantStyles[variant],
         sizeStyles[size],
         className

@@ -8,24 +8,34 @@ export function Sidebar({ onNavClick }: { onNavClick?: () => void }) {
   const pathname = usePathname()
 
   return (
-    <aside className="w-64 flex-shrink-0 bg-slate-900 border-r border-slate-800 flex flex-col h-screen">
-      {/* Logo */}
-      <div className="h-16 flex items-center px-5 border-b border-slate-800">
-        <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-md bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
-            PF
+    <aside className="w-64 flex-shrink-0 bg-[#0d1526] border-r border-white/[0.07] flex flex-col h-screen">
+
+      {/* Logo — estilo Automatizaciones BCH */}
+      <div className="h-16 flex items-center px-5 border-b border-white/[0.07]">
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] font-medium tracking-[0.18em] text-white uppercase">
+              Automatizaciones
+            </span>
+            <span className="border border-white px-1.5 py-0.5 text-[10px] font-bold text-white tracking-widest">
+              BCH
+            </span>
           </div>
-          <span className="font-semibold text-slate-100 tracking-tight">
-            ProFlow{' '}
-            <span className="text-slate-400 font-normal">OS</span>
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] text-white/40 tracking-wide">
+              Sistema de Gestión
+            </span>
+            <span className="bg-white/10 text-white/50 px-1.5 py-px rounded-sm text-[9px] font-semibold tracking-widest uppercase">
+              Demo
+            </span>
+          </div>
         </div>
       </div>
 
       {/* Navigation */}
       <nav className="flex-1 py-4 px-3 space-y-0.5 overflow-y-auto">
-        <p className="text-xs font-medium text-slate-600 uppercase tracking-wider px-3 mb-2">
-          Principal
+        <p className="text-[10px] font-semibold text-white/25 uppercase tracking-widest px-3 mb-2">
+          Módulos
         </p>
         {navItems.map((item) => (
           <SidebarItem
@@ -40,21 +50,22 @@ export function Sidebar({ onNavClick }: { onNavClick?: () => void }) {
       </nav>
 
       {/* User footer */}
-      <div className="p-4 border-t border-slate-800">
-        <div className="flex items-center gap-3 px-2 py-2 rounded-md hover:bg-slate-800 transition-colors cursor-pointer">
-          <div className="w-7 h-7 rounded-full bg-blue-600/30 border border-blue-500/40 flex items-center justify-center text-xs text-blue-300 font-medium flex-shrink-0">
+      <div className="p-4 border-t border-white/[0.07]">
+        <div className="flex items-center gap-3 px-2 py-2 rounded hover:bg-white/[0.04] transition-colors cursor-pointer">
+          <div className="w-7 h-7 rounded-full border border-white/20 bg-white/10 flex items-center justify-center text-xs text-white/70 font-medium flex-shrink-0">
             A
           </div>
           <div className="flex flex-col min-w-0">
-            <span className="text-xs font-medium text-slate-300 truncate">
+            <span className="text-xs font-medium text-white/80 truncate">
               Administrador
             </span>
-            <span className="text-xs text-slate-500 truncate">
-              alchavez90@gmail.com
+            <span className="text-[10px] text-white/35 truncate">
+              automatizacionesbch.com
             </span>
           </div>
         </div>
       </div>
+
     </aside>
   )
 }

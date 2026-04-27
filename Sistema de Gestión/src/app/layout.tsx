@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'ProFlow OS',
-  description: 'Business Operating System',
+  title: 'Automatizaciones BCH — Demo',
+  description: 'Sistema de Gestión Empresarial',
 }
 
 export default function RootLayout({
@@ -28,7 +28,7 @@ export default function RootLayout({
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full`}
     >
-      <body className="h-full bg-slate-950 text-slate-50 antialiased">
+      <body className="h-full bg-[#0d1526] text-white antialiased">
         <AppShell>{children}</AppShell>
       </body>
     </html>
